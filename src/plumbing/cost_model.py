@@ -252,7 +252,7 @@ class Route:
         return f"{self.corridor.key}|{self.asset}|{self.onramp}->{self.offramp}"
 
 
-OFFRAMPS: dict[str, list[tuple[str, str, str, str | None, str | None]]] = {
+OFFRAMPS: dict[str, list[tuple[str, str, str, str | None, str | None]]] = {  # noqa: RUF012
     # dest: (asset, offramp fee provider, off book, swap book, tax)
     "IND": [("XRP", "coindcx", "coindcx:I-XRP_INR", None, "india_tax"),
             ("USDT", "coindcx", "coindcx:I-USDT_INR", None, "india_tax"),
@@ -272,10 +272,10 @@ OFFRAMPS: dict[str, list[tuple[str, str, str, str | None, str | None]]] = {
             ("USDT", "bitso", "bitso:usdt_mxn", None, None)],
 }
 
-ONRAMPS_GBP = {"XRP": [("kraken", "kraken:XRPGBP"), ("revolut", "kraken:XRPGBP")],
+ONRAMPS_GBP: dict[str, list[tuple[str, str | None]]] = {"XRP": [("kraken", "kraken:XRPGBP"), ("revolut", "kraken:XRPGBP")],
                "USDT": [("kraken", "kraken:USDTGBP"), ("coinbase", "coinbase:USDT-GBP"), ("revolut", None)],
                "USDC": [("kraken", "kraken:USDCGBP"), ("coinbase", "coinbase:USDC-GBP"), ("revolut", None)]}
-ONRAMPS_USD = {"XRP": [("kraken", "kraken:XRPUSD")],
+ONRAMPS_USD: dict[str, list[tuple[str, str | None]]] = {"XRP": [("kraken", "kraken:XRPUSD")],
                "USDT": [("kraken", "kraken:USDTUSD"), ("coinbase", "coinbase:USDT-USD")],
                "USDC": [("kraken", "kraken:USDCUSD")]}
 
@@ -315,11 +315,11 @@ def fee_ranges(route: Route, fees: Mapping[tuple[str, str, str, str | None], Fee
         r["withdraw_fixed_asset"], r["withdraw_fixed_send"] = (0.0, 0.0), (w.low, w.high)
     else:
         raise ValueError(f"withdrawal fee unit {w.unit} for a {c.send_ccy} sender")
-    r["swap_pct"] = get(route.offramp, "trade", c.recv_ccy) if route.swap_book else (0.0, 0.0)
+    r["swap_pct"] = (get(route.offramp, "trade", c.recv_ccy) or (0.0, 0.0)) if route.swap_book else (0.0, 0.0)
     r["offramp_pct"] = get(route.offramp, "trade", c.recv_ccy) or (0.0, 0.0)
     r["payout_fixed_local"] = get(route.offramp, "withdraw_fiat", c.recv_ccy) or (0.0, 0.0)
-    r["tax_pct"] = get(route.tax, "payout", c.recv_ccy) if route.tax else (0.0, 0.0)
-    return {k: (v if v is not None else (0.0, 0.0)) for k, v in r.items()}
+    r["tax_pct"] = (get(route.tax, "payout", c.recv_ccy) or (0.0, 0.0)) if route.tax else (0.0, 0.0)
+    return r
 
 
 def draw_fees(ranges: Mapping[str, tuple[float, float]], rng: np.random.Generator | None,

@@ -127,11 +127,11 @@ def fetch_ledger(client: Client, index: int, transactions: bool, raw: Path = RAW
     return ledger
 
 
-def ledger_time(client: Client, index: int, raw: Path = RAW) -> datetime:
+def ledger_time(client: Client, index: int, raw: Path = RAW) -> datetime:  # pragma: no cover - network orchestration, exercised by `make refresh`
     return ripple_time(int(fetch_ledger(client, index, False, raw)["close_time"])).to_pydatetime()
 
 
-def window_ledgers(client: Client, window: tuple[date, date] = FEE_WINDOW, raw: Path = RAW) -> tuple[int, int]:
+def window_ledgers(client: Client, window: tuple[date, date] = FEE_WINDOW, raw: Path = RAW) -> tuple[int, int]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     latest = int(rpc(client, "ledger", {"ledger_index": "validated"})["ledger_index"])
     t0 = datetime(window[0].year, window[0].month, window[0].day, tzinfo=UTC)
     t1 = datetime(window[1].year, window[1].month, window[1].day, 23, 59, 59, tzinfo=UTC)
@@ -140,7 +140,7 @@ def window_ledgers(client: Client, window: tuple[date, date] = FEE_WINDOW, raw: 
     return first, last
 
 
-def stream_ledgers(minutes: float, out: Path, servers=WS_SERVERS) -> int:
+def stream_ledgers(minutes: float, out: Path, servers=WS_SERVERS) -> int:  # pragma: no cover - network orchestration, exercised by `make refresh`
     """Subscribe to the ledger stream and record each ledgerClosed message with its arrival time."""
     import websocket  # optional dependency, only needed for live sampling
 
@@ -189,7 +189,7 @@ def build_live(raw: Path = RAW, cache: Path = CACHE) -> dict[str, Path]:
 
 
 def build_cache(client: Client | None = None, n_fee_ledgers: int = 1008, n_spans: int = 504, span: int = 100,
-                cache: Path = CACHE, raw: Path = RAW, stream_minutes: float = 0) -> dict[str, Path]:
+                cache: Path = CACHE, raw: Path = RAW, stream_minutes: float = 0) -> dict[str, Path]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     client = client or Client()
     cache.mkdir(parents=True, exist_ok=True)
     first, last = window_ledgers(client, FEE_WINDOW, raw)

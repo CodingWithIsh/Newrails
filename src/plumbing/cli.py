@@ -44,7 +44,7 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
-def live(minutes: float) -> None:
+def live(minutes: float) -> None:  # pragma: no cover - network orchestration, exercised by `make refresh`
     import threading
 
     from plumbing.config import RAW

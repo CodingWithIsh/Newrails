@@ -103,7 +103,7 @@ def _pairs(rows: Iterable[Any]) -> Levels:
     out = []
     for r in rows:
         if isinstance(r, dict):
-            price, qty = r.get("price"), r.get("volume", r.get("amount"))
+            price, qty = r["price"], (r["volume"] if "volume" in r else r["amount"])
         else:
             price, qty = r[0], r[1]
         out.append((float(price), float(qty)))

@@ -1,22 +1,27 @@
-# Progress (paused 26 Oct 2026, 02:50 UTC, at the usage limit)
+# Progress (updated 26 Oct 2026, 06:20 UTC)
 
-## Done
-- S0: PLAN.md, docs/plan_review.md, scaffold, ASSUMPTIONS.md, DATA_SOURCES.md (both partial).
-- S1: ingest_ramps.py and the collector. **Running in the background until about 29 Oct 02:20 UTC** (pid in `pgrep -fl "plumbing collect"`), writing to data/raw/snapshots/.
-- S2: ingest_rpw.py. Reproduces the global average (6.363%) and the UK average (4.614%). Benchmarks at £200: B1 0.01–0.46%, B2 0.6–1.8%.
-- S3–S5 code written: ingest_prices.py, ingest_xrpl.py, ingest_chain.py, plus their tests (41 passing at the last run).
-- Background pulls started at about 02:47: prices (`logs/prices.log`) and the Solana/Tron fee sample (`logs/chain_build.log`). The XRPL sample is done (cache/xrpl_*). Live samplers: XRPL stream (3 h), Solana and Tron finality (2 h). The Solana sampler was restarted to use batched RPC calls; the first sequential file is kept as `.bak` and must not be used.
+## Done (all committed; 122 tests passing)
+- S0–S5: plan and review (docs/plan_review.md, rounds 1–7), ingest modules for RPW, prices, ramps, XRPL and chains, and the data cache.
+- S6: data/manual/fees.yaml (31 fees, 16 unverified) and data/manual/availability.yaml (37 route legs).
+- S7: cost_model.py (order-book walking, leg decomposition, routes, Monte Carlo, closed-form breakeven).
+- S8: risk.py (VaR/ES, block bootstrap, Kupiec, peg bands, fee tails).
+- S9: report.py, plots.py (8 charts in results/figures), and `python -m plumbing run --all` (about 1 minute, offline).
 
-## Fee facts collected so far (add to data/manual/fees.yaml)
-- **Kraken withdrawals** (support.kraken.com/articles/360000767986, updated 31 Dec 2025, read 26 Oct 2026): XRP 0.05 XRP (minimum 12.05); USDT on Tron 1 USDT (minimum 6); USDC on Solana 1.0323 USDC; USDT on Solana 1.0334; RLUSD 0.5674.
-- **Kraken fees** (kraken.com/features/fee-schedule): Pro spot tier 1 is 0.40% maker / 0.80% taker. Stablecoin-base pairs (USDC/GBP, USDT/GBP) are 0.20% / 0.20%. Instant buy is 1% plus an unquantified spread.
-- **Coinbase UK** (help.coinbase.com/en-gb/.../pricing-and-fees/fees): simple buy has a spread plus a fee that varies by payment method (1.875% mentioned for limit orders). USDT withdrawals: 0.01% processing fee plus the network fee. Advanced fees are not public without sign-in, so mark them unverified and use a range.
+## Still running
+- The **ramp collector runs until about 29 Oct 02:20 UTC** (`pgrep -fl "plumbing collect"`). After it stops, re-run `python -m plumbing run --all`. That refreshes results from the full 72 hours. Then update the numbers quoted in writeup/article.md and writeup/cv_summary.md from results/summary.csv and results/hypotheses.csv.
 
 ## Next
-1. Check that the background jobs finished; fix any failures; commit data/cache/*.parquet.
-2. S6: Revolut UK crypto fees (403 to WebFetch, so use the browser pane), Kraken GBP Faster Payments deposit, and the destination exchanges' trading, withdrawal and payout fees (CoinDCX, WazirX, Luno NG/KE, Quidax, Coins.ph, Bitso). Add the network availability matrix and India's 1% TDS plus 30% tax. Write data/manual/fees.yaml and availability.yaml with their schema tests.
-3. S7 cost_model.py (book walking, legs, decomposition, breakeven, Monte Carlo) with unit and hypothesis tests.
-4. S8 risk.py (VaR/ES, block bootstrap, Kupiec, peg episodes, fee tails) with tests.
-5. S9 plots.py, report.py (summary.csv), notebooks/analysis.ipynb, cli `run --all`.
-6. S10 LIMITATIONS.md, article (1,200–1,500 words), cv_summary.md, README, DATA_SOURCES.md complete.
-7. S11 Makefile, requirements.lock, CI workflow, coverage ≥85%, fresh-clone `make all`.
+1. notebooks/analysis.ipynb: tells the story with the 8 charts, calling report.build() and plots.
+2. LIMITATIONS.md; finish ASSUMPTIONS.md (fees, Revolut XRP proxy, TDS, swaps, held-flat RPW) and DATA_SOURCES.md (full table).
+3. writeup/article.md (1,200–1,500 words, voice of article 2) and writeup/cv_summary.md.
+4. README.md, Makefile (setup/test/lint/all/refresh), requirements.lock, .github/workflows/ci.yml, coverage ≥ 85%, and a fresh-clone `make all` check.
+
+## Pages that need a human (bot checks blocked automated reading)
+- coindcx.com/fees, guide.luno.com.ng (Nigeria fees and limits), and the Luno Kenya fee page. If you read them, update the `unverified` entries in data/manual/fees.yaml and re-run.
+
+## Headline results so far (provisional, about 30 snapshot rounds)
+- Crypto routes: 0–30% of cost is exchange rate (vs 54% for traditional UK providers); fees dominate.
+- Before any local premium, the newer rails rarely beat the cheapest digital provider (B1).
+- India +6.3% and Kenya +3.6% USDT premiums make those routes look "negative cost". This is policy, not technology.
+- XRP 99% 10-min VaR on £200 is £2.40 (1.20%). Kupiec rejects a 30-day rolling VaR (689 breaches vs 496 expected).
+- H1, H2, H3, H5 and H6 held; H4 did not (2 of 4 corridors).

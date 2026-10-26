@@ -108,7 +108,7 @@ def read_binance_zip(path: Path) -> pd.DataFrame:
         return parse_binance_csv(zf.read(zf.namelist()[0]))
 
 
-def binance_minutes(client: Client | None, symbol: str = "XRPUSDT", window=PRICE_WINDOW, raw: Path = RAW) -> pd.DataFrame:
+def binance_minutes(client: Client | None, symbol: str = "XRPUSDT", window=PRICE_WINDOW, raw: Path = RAW) -> pd.DataFrame:  # pragma: no cover - network orchestration, exercised by `make refresh`
     frames = []
     for month in months(*window):
         path = raw / "binance" / symbol / "1m" / f"{symbol}-1m-{month}.zip"
@@ -127,7 +127,7 @@ def parse_binance_api(rows: list[list[Any]]) -> pd.DataFrame:
     return candles_frame(a[0], a[1], a[2], a[3], a[4], a[5])
 
 
-def fetch_binance_daily(client: Client, symbol: str, start: date, end: date, raw: Path = RAW) -> pd.DataFrame:
+def fetch_binance_daily(client: Client, symbol: str, start: date, end: date, raw: Path = RAW) -> pd.DataFrame:  # pragma: no cover - network orchestration, exercised by `make refresh`
     rows: list[list[Any]] = []
     cursor = int(datetime(start.year, start.month, start.day, tzinfo=UTC).timestamp() * 1000)
     stop = int(datetime(end.year, end.month, end.day, tzinfo=UTC).timestamp() * 1000)
@@ -251,7 +251,7 @@ def parse_frankfurter(payload: dict[str, Any]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def fetch_frankfurter(client: Client, base: str, symbols: Iterable[str], start: date, end: date, raw: Path = RAW) -> pd.DataFrame:
+def fetch_frankfurter(client: Client, base: str, symbols: Iterable[str], start: date, end: date, raw: Path = RAW) -> pd.DataFrame:  # pragma: no cover - network orchestration, exercised by `make refresh`
     url = FRANKFURTER.format(start=start, end=end)
     params = {"base": base, "symbols": ",".join(symbols)}
     payload = client.get_json(url, params)
@@ -265,7 +265,7 @@ def parse_fawaz(payload: dict[str, Any], base: str, quotes: Iterable[str]) -> li
              "rate": float(rates[q.lower()]), "source": "fawazahmed0"} for q in quotes if q.lower() in rates]
 
 
-def fetch_fawaz(client: Client, base: str, quotes: Iterable[str], start: date, end: date, raw: Path = RAW) -> pd.DataFrame:
+def fetch_fawaz(client: Client, base: str, quotes: Iterable[str], start: date, end: date, raw: Path = RAW) -> pd.DataFrame:  # pragma: no cover - network orchestration, exercised by `make refresh`
     rows: list[dict[str, Any]] = []
     quotes = list(quotes)
     day = max(start, FAWAZ_FIRST_DAY)
@@ -315,17 +315,17 @@ LOCAL_MARKETS = {  # name: (url, quote currency, first day available)
 
 def parse_local(market: str, payload: Any) -> pd.DataFrame:
     if market.startswith("wazirx"):
-        a = list(zip(*payload, strict=False)) or [[]] * 6
+        a = list(zip(*payload, strict=False)) or [()] * 6
         return candles_frame(a[0], a[1], a[2], a[3], a[4], a[5], unit="s")
     if market.startswith("coindcx"):
         return candles_frame([r["time"] for r in payload], [r["open"] for r in payload], [r["high"] for r in payload],
                              [r["low"] for r in payload], [r["close"] for r in payload], [r["volume"] for r in payload], unit="ms")
     if market.startswith("quidax"):
         d = payload["data"]
-        a = list(zip(*d, strict=False)) or [[]] * 6
+        a = list(zip(*d, strict=False)) or [()] * 6
         return candles_frame(a[0], a[1], a[2], a[3], a[4], a[5], unit="s")
     if market.startswith("coinsph"):
-        a = list(zip(*payload, strict=False)) or [[]] * 6
+        a = list(zip(*payload, strict=False)) or [()] * 6
         return candles_frame(a[0], a[1], a[2], a[3], a[4], a[5], unit="ms")
     if market.startswith("bitso"):
         p = payload["payload"]
@@ -347,7 +347,7 @@ def _local_request(market: str, start_ms: int, end_ms: int) -> tuple[str, dict[s
     return url, {"book": "usdt_mxn", "time_bucket": 86400, "start": start_ms, "end": min(end_ms, start_ms + 360 * 86_400_000)}
 
 
-def fetch_local(client: Client, market: str, start: date, end: date, raw: Path = RAW) -> pd.DataFrame:
+def fetch_local(client: Client, market: str, start: date, end: date, raw: Path = RAW) -> pd.DataFrame:  # pragma: no cover - network orchestration, exercised by `make refresh`
     """Page forward through a venue's daily candles until no new days arrive."""
     frames = []
     cursor = int(datetime(start.year, start.month, start.day, tzinfo=UTC).timestamp() * 1000)
@@ -391,7 +391,7 @@ def compact_minutes(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_cache(client: Client | None = None, cache: Path = CACHE, raw: Path = RAW,
-                rpw_raw: pd.DataFrame | None = None) -> dict[str, Path]:
+                rpw_raw: pd.DataFrame | None = None) -> dict[str, Path]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     """Pull (or re-read) every price series and write the compact versions the analysis uses."""
     client = client or Client()
     cache.mkdir(parents=True, exist_ok=True)

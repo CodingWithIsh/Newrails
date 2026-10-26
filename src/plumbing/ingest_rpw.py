@@ -8,6 +8,7 @@ services, and services that do not disclose their rate ("transparent" = no) excl
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -135,7 +136,7 @@ def is_digital_to_account(df: pd.DataFrame) -> pd.Series:
     return df["access_point"].eq("Internet").fillna(False) & df["pickup_method"].isin(ACCOUNT_PICKUPS).fillna(False)
 
 
-def benchmarks(df: pd.DataFrame, corridor: Corridor, amount: float, period: str = RPW_PERIOD) -> dict[str, float]:
+def benchmarks(df: pd.DataFrame, corridor: Corridor, amount: float, period: str = RPW_PERIOD) -> dict[str, Any]:
     """B1 cheapest digital-to-account service with a margin >= 0; B2 its group median; B3 corridor mean."""
     q = interpolate(corridor_quotes(df, corridor, period), amount)
     digital = q[is_digital_to_account(q)]

@@ -96,7 +96,7 @@ def fetch_solana_block(client: Client, slot: int, raw: Path = RAW, max_skip: int
     raise RuntimeError(f"no produced slot in {slot}..{slot + max_skip}")
 
 
-def solana_time(client: Client, slot: int) -> datetime:
+def solana_time(client: Client, slot: int) -> datetime:  # pragma: no cover - network orchestration, exercised by `make refresh`
     for s in range(slot, slot + 50):
         try:
             return datetime.fromtimestamp(sol_rpc(client, "getBlockTime", [s]), UTC)
@@ -105,7 +105,7 @@ def solana_time(client: Client, slot: int) -> datetime:
     raise RuntimeError(f"no block time near slot {slot}")
 
 
-def solana_window(client: Client, window: tuple[date, date] = FEE_WINDOW) -> tuple[int, int]:
+def solana_window(client: Client, window: tuple[date, date] = FEE_WINDOW) -> tuple[int, int]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     latest = int(sol_rpc(client, "getSlot", [{"commitment": "finalized"}]))
     lo = 250_000_000  # about February 2024, safely before the window
     t0 = datetime(window[0].year, window[0].month, window[0].day, tzinfo=UTC)
@@ -132,7 +132,7 @@ def slots_now(client: Client) -> dict[str, int]:
     return {c: int(r["result"]) for c, r in zip(COMMITMENTS, res, strict=True)}
 
 
-def sample_solana_finality(client: Client, minutes: float, every_s: float, out: Path) -> int:
+def sample_solana_finality(client: Client, minutes: float, every_s: float, out: Path) -> int:  # pragma: no cover - network orchestration, exercised by `make refresh`
     n = 0
     deadline = time.time() + minutes * 60
     while time.time() < deadline:
@@ -197,12 +197,12 @@ def fetch_tron_block_infos(client: Client, num: int, raw: Path = RAW) -> list[di
     return slim
 
 
-def tron_time(client: Client, num: int) -> datetime:
+def tron_time(client: Client, num: int) -> datetime:  # pragma: no cover - network orchestration, exercised by `make refresh`
     b = tron_post(client, "/wallet/getblockbynum", {"num": num})
     return datetime.fromtimestamp(b["block_header"]["raw_data"]["timestamp"] / 1000, UTC)
 
 
-def tron_window(client: Client, window: tuple[date, date] = FEE_WINDOW) -> tuple[int, int]:
+def tron_window(client: Client, window: tuple[date, date] = FEE_WINDOW) -> tuple[int, int]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     latest = tron_post(client, "/wallet/getnowblock")["block_header"]["raw_data"]["number"]
     t0 = datetime(window[0].year, window[0].month, window[0].day, tzinfo=UTC)
     t1 = datetime(window[1].year, window[1].month, window[1].day, 23, 59, 59, tzinfo=UTC)
@@ -211,7 +211,7 @@ def tron_window(client: Client, window: tuple[date, date] = FEE_WINDOW) -> tuple
     return first, last
 
 
-def sample_tron_finality(client: Client, minutes: float, every_s: float, out: Path) -> int:
+def sample_tron_finality(client: Client, minutes: float, every_s: float, out: Path) -> int:  # pragma: no cover - network orchestration, exercised by `make refresh`
     n = 0
     deadline = time.time() + minutes * 60
     while time.time() < deadline:
@@ -285,7 +285,7 @@ def build_live(raw: Path = RAW, cache: Path = CACHE) -> dict[str, Path]:
 
 
 def build_cache(client: Client | None = None, n_solana: int = 120, n_tron: int = 480,
-                cache: Path = CACHE, raw: Path = RAW) -> dict[str, Path]:
+                cache: Path = CACHE, raw: Path = RAW) -> dict[str, Path]:  # pragma: no cover - network orchestration, exercised by `make refresh`
     client = client or Client()
     cache.mkdir(parents=True, exist_ok=True)
     out: dict[str, Path] = {}

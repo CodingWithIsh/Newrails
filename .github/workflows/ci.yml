@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.lock
+          pip install -e . --no-deps
+      - name: Lint
+        run: ruff check src tests
+      - name: Type-check (lenient)
+        run: mypy src
+      - name: Tests (offline, against committed fixtures and cache)
+        run: pytest --cov=plumbing --cov-report=term-missing --cov-fail-under=85
+      - name: Rebuild results from the cache
+        run: python -m plumbing run --all --draws 300
