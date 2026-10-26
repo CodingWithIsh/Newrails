@@ -291,6 +291,10 @@ def fetch_fawaz(client: Client, base: str, quotes: Iterable[str], start: date, e
 def rpw_fx_anchors(rpw_raw: pd.DataFrame, since: str = "2021_1Q") -> pd.DataFrame:
     """Official USD->local rates on RPW survey dates, from the US-sender corridors' interbank rates."""
     us = rpw_raw[(rpw_raw["source_code"] == "USA") & (rpw_raw["period"] >= since)]
+    # Until early 2024 almost every RPW service to Nigeria paid out in US dollars (the Central Bank of
+    # Nigeria's 2020 dollar-payout rule), so its "interbank rate" is 1.0. Every currency used here
+    # trades above 10 per dollar, so rates below 10 mark a dollar payout and are excluded.
+    us = us[us["interbank_fx"] > 10]
     g = us.groupby(["period", "destination_code"]).agg(date=("date", "median"), rate=("interbank_fx", "median"))
     out = g.reset_index().rename(columns={"destination_code": "dest"})
     out["date"] = pd.to_datetime(out["date"]).dt.normalize()

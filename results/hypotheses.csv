@@ -1,0 +1,7 @@
+id,claim,result,held,note
+H1,Stablecoin conversion cost >= cheapest provider's FX margin (>= 3 of 4 corridors),3 of 4 corridors,True,
+H2,"Protocol fees tiny on XRPL/Solana, >= 0.5% on Tron when burned; charged >= 10x protocol","XRPL 0.0000%, Solana 0.0005%, Tron burned 1.19%; Kraken USDC-Solana fee = 763x protocol",True,
+H3,"On-chain finality: < 10 s XRPL & Solana, < 2 min Tron; end-to-end slower than RPW median","XRPL ~7.9 s (two ledgers), Solana 0.21 s, Tron 57 s; first-time UK buyer faces a 24 h FCA cooling-off vs RPW median 'less than one hour'",True,
+H4,XRP 99% 10-min VaR exceeds the XRP rail's saving vs B1 in most corridors,VaR 1.20%; larger than the saving in 2 of 4 corridors (savings exist only where a local premium pays the recipient),False,
+H5,Stablecoins within ±0.5% of $1 in > 99% of hours; worst USDC episode > 5%,"USDC 99.85%, USDT 99.82% of hours; worst USDC hourly close $0.863",True,Reported over all hours: 'outside episodes' would be circular because episodes are defined by the 0.5% band.
+H6,"Local premium (India, Kenya) exceeds the difference between rails and varies > 2 pp","premium India 6.3%, Kenya 3.6% vs rail differences 0.3 and 0.9 pp; time variation in premium_history",True,

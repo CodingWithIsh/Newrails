@@ -1,0 +1,14 @@
+route,corridor,rail,on_pct,off_pct,fixed_send
+GBR-IND|XRP|kraken->coindcx,GBR-IND,XRP (XRPL),0.6291,1.0993,0.1606
+GBR-IND|USDT|kraken->coindcx,GBR-IND,USDT (Tron),0.4533,0.9508,0.8599
+GBR-IND|USDC|kraken->coindcx,GBR-IND,USDC (Solana),0.5857,0.9263,0.8851
+GBR-NGA|XRP|kraken->luno_ng,GBR-NGA,XRP (XRPL),0.6316,2.7492,0.1871
+GBR-NGA|USDT|kraken->luno_ng,GBR-NGA,USDT (Tron),0.4518,0.7548,0.8847
+GBR-NGA|USDT|kraken->quidax,GBR-NGA,USDT (Tron),0.4518,0.6307,0.9116
+GBR-NGA|USDC|kraken->luno_ng,GBR-NGA,USDC (Solana),0.5842,1.3307,0.9108
+GBR-PHL|XRP|kraken->coinsph,GBR-PHL,XRP (XRPL),0.6316,0.3921,0.1367
+GBR-PHL|USDT|kraken->coinsph,GBR-PHL,USDT (Tron),0.4518,0.3269,0.8361
+GBR-PHL|USDC|kraken->coinsph,GBR-PHL,USDC (Solana),0.5842,0.3269,0.8612
+GBR-KEN|XRP|kraken->luno_ke,GBR-KEN,XRP (XRPL),0.6316,1.9698,0.3325
+GBR-KEN|USDT|kraken->luno_ke,GBR-KEN,USDT (Tron),0.4518,1.3281,1.0295
+GBR-KEN|USDC|kraken->luno_ke,GBR-KEN,USDC (Solana),0.5842,1.9003,1.0566

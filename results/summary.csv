@@ -1,0 +1,238 @@
+section,corridor,rail,metric,estimate,low,high,unit,method,n
+cost,GBR-IND,USDC (Solana),all-in cost (incl. local premium and tax),-3.8008,-4.2047,-3.3358,%,Monte Carlo over snapshots and fee ranges; route coinbase->coindcx,2000.0000
+cost,GBR-IND,USDC (Solana),cost excluding local premium and tax,1.3916,1.0042,1.8720,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-IND,USDC (Solana),share of cost in exchange rates (excl. premium),22.2588,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-IND,USDC (Solana),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-IND,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-IND,USDT (Tron),all-in cost (incl. local premium and tax),-3.8698,-4.0256,-3.6689,%,Monte Carlo over snapshots and fee ranges; route kraken->coindcx,1823.0000
+cost,GBR-IND,USDT (Tron),cost excluding local premium and tax,1.3685,1.1002,1.4639,%,"as above, premium and tax legs removed",1823.0000
+cost,GBR-IND,USDT (Tron),share of cost in exchange rates (excl. premium),15.5079,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-IND,USDT (Tron),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-IND,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-IND,XRP (XRPL),all-in cost (incl. local premium and tax),-3.5631,-4.1727,-2.7593,%,Monte Carlo over snapshots and fee ranges; route kraken->coindcx,2000.0000
+cost,GBR-IND,XRP (XRPL),cost excluding local premium and tax,1.6353,1.3486,1.8910,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-IND,XRP (XRPL),share of cost in exchange rates (excl. premium),27.0722,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-IND,XRP (XRPL),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-IND,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-KEN,USDC (Solana),all-in cost (incl. local premium and tax),-1.1569,-1.9205,-0.4287,%,Monte Carlo over snapshots and fee ranges; route coinbase->luno_ke,2000.0000
+cost,GBR-KEN,USDC (Solana),cost excluding local premium and tax,2.3558,1.6256,3.0522,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-KEN,USDC (Solana),share of cost in exchange rates (excl. premium),28.0733,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-KEN,USDC (Solana),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-KEN,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-KEN,USDT (Tron),all-in cost (incl. local premium and tax),-1.7833,-2.2220,-1.3255,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ke,2000.0000
+cost,GBR-KEN,USDT (Tron),cost excluding local premium and tax,1.7485,1.3328,2.1859,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-KEN,USDT (Tron),share of cost in exchange rates (excl. premium),29.1639,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-KEN,USDT (Tron),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-KEN,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-KEN,XRP (XRPL),all-in cost (incl. local premium and tax),-1.0263,-1.7254,-0.3082,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ke,2000.0000
+cost,GBR-KEN,XRP (XRPL),cost excluding local premium and tax,2.6510,1.9610,3.3267,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-KEN,XRP (XRPL),share of cost in exchange rates (excl. premium),30.8482,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-KEN,XRP (XRPL),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,GBR-KEN,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-NGA,USDC (Solana),all-in cost (incl. local premium and tax),1.3363,0.5958,2.1129,%,Monte Carlo over snapshots and fee ranges; route coinbase->luno_ng,2000.0000
+cost,GBR-NGA,USDC (Solana),cost excluding local premium and tax,1.7278,1.0045,2.4414,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-NGA,USDC (Solana),share of cost in exchange rates (excl. premium),6.2782,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-NGA,USDC (Solana),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,GBR-NGA,USDC (Solana),"P(beats median digital provider, B2)",4.9000,,,%,,
+cost,GBR-NGA,USDT (Tron),all-in cost (incl. local premium and tax),0.5669,0.4562,0.6872,%,Monte Carlo over snapshots and fee ranges; route kraken->quidax,2000.0000
+cost,GBR-NGA,USDT (Tron),cost excluding local premium and tax,1.0687,0.9631,1.1819,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-NGA,USDT (Tron),share of cost in exchange rates (excl. premium),20.6582,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-NGA,USDT (Tron),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,GBR-NGA,USDT (Tron),"P(beats median digital provider, B2)",56.4000,,,%,,
+cost,GBR-NGA,XRP (XRPL),all-in cost (incl. local premium and tax),2.0684,1.4607,2.6749,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ng,2000.0000
+cost,GBR-NGA,XRP (XRPL),cost excluding local premium and tax,3.0267,1.8165,4.4411,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-NGA,XRP (XRPL),share of cost in exchange rates (excl. premium),59.6449,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-NGA,XRP (XRPL),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,GBR-NGA,XRP (XRPL),"P(beats median digital provider, B2)",0.0000,,,%,,
+cost,GBR-PHL,USDC (Solana),all-in cost (incl. local premium and tax),0.7768,0.4428,1.1430,%,Monte Carlo over snapshots and fee ranges; route coinbase->coinsph,2000.0000
+cost,GBR-PHL,USDC (Solana),cost excluding local premium and tax,0.7920,0.4569,1.1568,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-PHL,USDC (Solana),share of cost in exchange rates (excl. premium),0.6550,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-PHL,USDC (Solana),"P(beats cheapest digital provider, B1)",4.6500,,,%,,
+cost,GBR-PHL,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-PHL,USDT (Tron),all-in cost (incl. local premium and tax),0.8744,0.8181,0.9362,%,Monte Carlo over snapshots and fee ranges; route kraken->coinsph,2000.0000
+cost,GBR-PHL,USDT (Tron),cost excluding local premium and tax,0.7690,0.7209,0.8198,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-PHL,USDT (Tron),share of cost in exchange rates (excl. premium),-15.4955,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-PHL,USDT (Tron),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,GBR-PHL,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,GBR-PHL,XRP (XRPL),all-in cost (incl. local premium and tax),0.9868,0.7979,1.1899,%,Monte Carlo over snapshots and fee ranges; route kraken->coinsph,2000.0000
+cost,GBR-PHL,XRP (XRPL),cost excluding local premium and tax,1.0039,0.8263,1.1971,%,"as above, premium and tax legs removed",2000.0000
+cost,GBR-PHL,XRP (XRPL),share of cost in exchange rates (excl. premium),7.7954,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,GBR-PHL,XRP (XRPL),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,GBR-PHL,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-IND,USDC (Solana),all-in cost (incl. local premium and tax),-3.5983,-3.8060,-3.2136,%,Monte Carlo over snapshots and fee ranges; route kraken->coindcx,2000.0000
+cost,USA-IND,USDC (Solana),cost excluding local premium and tax,1.5728,1.4793,2.0832,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-IND,USDC (Solana),share of cost in exchange rates (excl. premium),15.8420,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-IND,USDC (Solana),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-IND,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-IND,USDT (Tron),all-in cost (incl. local premium and tax),-3.7548,-3.9243,-3.5296,%,Monte Carlo over snapshots and fee ranges; route kraken->coindcx,1823.0000
+cost,USA-IND,USDT (Tron),cost excluding local premium and tax,1.4730,1.2199,1.5834,%,"as above, premium and tax legs removed",1823.0000
+cost,USA-IND,USDT (Tron),share of cost in exchange rates (excl. premium),12.1197,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-IND,USDT (Tron),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-IND,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-IND,XRP (XRPL),all-in cost (incl. local premium and tax),-3.5626,-4.1624,-2.7444,%,Monte Carlo over snapshots and fee ranges; route kraken->coindcx,2000.0000
+cost,USA-IND,XRP (XRPL),cost excluding local premium and tax,1.6464,1.3537,1.9045,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-IND,XRP (XRPL),share of cost in exchange rates (excl. premium),25.9637,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-IND,XRP (XRPL),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-IND,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-KEN,USDC (Solana),all-in cost (incl. local premium and tax),-0.9226,-1.5881,-0.2835,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ke,2000.0000
+cost,USA-KEN,USDC (Solana),cost excluding local premium and tax,2.5826,1.9408,3.1960,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-KEN,USDC (Solana),share of cost in exchange rates (excl. premium),23.3923,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-KEN,USDC (Solana),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-KEN,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-KEN,USDT (Tron),all-in cost (incl. local premium and tax),-1.6640,-2.1262,-1.1890,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ke,2000.0000
+cost,USA-KEN,USDT (Tron),cost excluding local premium and tax,1.8617,1.4233,2.3242,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-KEN,USDT (Tron),share of cost in exchange rates (excl. premium),24.3181,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-KEN,USDT (Tron),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-KEN,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-KEN,XRP (XRPL),all-in cost (incl. local premium and tax),-1.0357,-1.7325,-0.2925,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ke,2000.0000
+cost,USA-KEN,XRP (XRPL),cost excluding local premium and tax,2.6516,1.9649,3.3491,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-KEN,XRP (XRPL),share of cost in exchange rates (excl. premium),28.8566,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-KEN,XRP (XRPL),"P(beats cheapest digital provider, B1)",100.0000,,,%,,
+cost,USA-KEN,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-MEX,USDT (Tron),all-in cost (incl. local premium and tax),1.3758,1.2945,1.4583,%,Monte Carlo over snapshots and fee ranges; route kraken->bitso,2000.0000
+cost,USA-MEX,USDT (Tron),cost excluding local premium and tax,1.2440,1.1665,1.3280,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-MEX,USDT (Tron),share of cost in exchange rates (excl. premium),-11.1792,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-MEX,USDT (Tron),"P(beats cheapest digital provider, B1)",0.0500,,,%,,
+cost,USA-MEX,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-MEX,XRP (XRPL),all-in cost (incl. local premium and tax),1.3290,1.1203,1.5514,%,Monte Carlo over snapshots and fee ranges; route kraken->bitso,2000.0000
+cost,USA-MEX,XRP (XRPL),cost excluding local premium and tax,1.3552,1.1425,1.5812,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-MEX,XRP (XRPL),share of cost in exchange rates (excl. premium),2.4607,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-MEX,XRP (XRPL),"P(beats cheapest digital provider, B1)",30.8000,,,%,,
+cost,USA-MEX,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-NGA,USDC (Solana),all-in cost (incl. local premium and tax),1.5883,0.9360,2.2434,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ng,2000.0000
+cost,USA-NGA,USDC (Solana),cost excluding local premium and tax,1.9736,1.3569,2.5903,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-NGA,USDC (Solana),share of cost in exchange rates (excl. premium),4.6495,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-NGA,USDC (Solana),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-NGA,USDC (Solana),"P(beats median digital provider, B2)",70.8000,,,%,,
+cost,USA-NGA,USDT (Tron),all-in cost (incl. local premium and tax),0.7071,0.5837,0.8368,%,Monte Carlo over snapshots and fee ranges; route kraken->quidax,2000.0000
+cost,USA-NGA,USDT (Tron),cost excluding local premium and tax,1.2075,1.0908,1.3285,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-NGA,USDT (Tron),share of cost in exchange rates (excl. premium),17.0748,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-NGA,USDT (Tron),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-NGA,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-NGA,XRP (XRPL),all-in cost (incl. local premium and tax),2.0839,1.4789,2.6911,%,Monte Carlo over snapshots and fee ranges; route kraken->luno_ng,2000.0000
+cost,USA-NGA,XRP (XRPL),cost excluding local premium and tax,3.0514,1.8333,4.4505,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-NGA,XRP (XRPL),share of cost in exchange rates (excl. premium),59.0711,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-NGA,XRP (XRPL),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-NGA,XRP (XRPL),"P(beats median digital provider, B2)",24.5500,,,%,,
+cost,USA-PHL,USDC (Solana),all-in cost (incl. local premium and tax),1.0205,0.9556,1.0890,%,Monte Carlo over snapshots and fee ranges; route kraken->coinsph,2000.0000
+cost,USA-PHL,USDC (Solana),cost excluding local premium and tax,1.0337,0.9763,1.0948,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-PHL,USDC (Solana),share of cost in exchange rates (excl. premium),-1.1586,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-PHL,USDC (Solana),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-PHL,USDC (Solana),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-PHL,USDT (Tron),all-in cost (incl. local premium and tax),0.9989,0.9355,1.0703,%,Monte Carlo over snapshots and fee ranges; route kraken->coinsph,2000.0000
+cost,USA-PHL,USDT (Tron),cost excluding local premium and tax,0.8942,0.8375,0.9570,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-PHL,USDT (Tron),share of cost in exchange rates (excl. premium),-15.0235,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-PHL,USDT (Tron),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-PHL,USDT (Tron),"P(beats median digital provider, B2)",100.0000,,,%,,
+cost,USA-PHL,XRP (XRPL),all-in cost (incl. local premium and tax),0.9948,0.8002,1.2009,%,Monte Carlo over snapshots and fee ranges; route kraken->coinsph,2000.0000
+cost,USA-PHL,XRP (XRPL),cost excluding local premium and tax,1.0197,0.8305,1.2151,%,"as above, premium and tax legs removed",2000.0000
+cost,USA-PHL,XRP (XRPL),share of cost in exchange rates (excl. premium),6.7838,,,%,"(spread + fx) / (fee + spread + fx), median draw",
+cost,USA-PHL,XRP (XRPL),"P(beats cheapest digital provider, B1)",0.0000,,,%,,
+cost,USA-PHL,XRP (XRPL),"P(beats median digital provider, B2)",100.0000,,,%,,
+benchmark,GBR-IND,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.1500,,,%,State Bank of India,16.0000
+benchmark,GBR-IND,Bank/MTO,B2 median digital-to-account,1.5044,,,%,,16.0000
+benchmark,GBR-IND,Bank/MTO,B3 corridor average,1.4099,,,%,,28.0000
+benchmark,GBR-IND,Bank/MTO,share of cost in exchange rate (B3),38.5759,,,%,,
+benchmark,GBR-NGA,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.0100,,,%,Sendwave,20.0000
+benchmark,GBR-NGA,Bank/MTO,B2 median digital-to-account,0.5825,,,%,,20.0000
+benchmark,GBR-NGA,Bank/MTO,B3 corridor average,1.4935,,,%,,31.0000
+benchmark,GBR-NGA,Bank/MTO,share of cost in exchange rate (B3),48.8565,,,%,,
+benchmark,GBR-PHL,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.4400,,,%,MoneyGram,20.0000
+benchmark,GBR-PHL,Bank/MTO,B2 median digital-to-account,1.4447,,,%,,20.0000
+benchmark,GBR-PHL,Bank/MTO,B3 corridor average,2.4426,,,%,,38.0000
+benchmark,GBR-PHL,Bank/MTO,share of cost in exchange rate (B3),41.0695,,,%,,
+benchmark,GBR-PAK,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.4600,,,%,UBL,11.0000
+benchmark,GBR-PAK,Bank/MTO,B2 median digital-to-account,1.5406,,,%,,11.0000
+benchmark,GBR-PAK,Bank/MTO,B3 corridor average,1.6132,,,%,,29.0000
+benchmark,GBR-PAK,Bank/MTO,share of cost in exchange rate (B3),53.3102,,,%,,
+benchmark,GBR-KEN,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.3800,,,%,Sendwave,18.0000
+benchmark,GBR-KEN,Bank/MTO,B2 median digital-to-account,1.7700,,,%,,18.0000
+benchmark,GBR-KEN,Bank/MTO,B3 corridor average,2.8983,,,%,,27.0000
+benchmark,GBR-KEN,Bank/MTO,share of cost in exchange rate (B3),62.0540,,,%,,
+benchmark,USA-IND,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.4200,,,%,Placid Express,18.0000
+benchmark,USA-IND,Bank/MTO,B2 median digital-to-account,1.5550,,,%,,18.0000
+benchmark,USA-IND,Bank/MTO,B3 corridor average,3.6747,,,%,,46.0000
+benchmark,USA-IND,Bank/MTO,share of cost in exchange rate (B3),23.2141,,,%,,
+benchmark,USA-NGA,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.2800,,,%,WorldRemit,14.0000
+benchmark,USA-NGA,Bank/MTO,B2 median digital-to-account,1.8250,,,%,,14.0000
+benchmark,USA-NGA,Bank/MTO,B3 corridor average,2.7156,,,%,,33.0000
+benchmark,USA-NGA,Bank/MTO,share of cost in exchange rate (B3),17.6979,,,%,,
+benchmark,USA-PHL,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.5800,,,%,MoneyGram,17.0000
+benchmark,USA-PHL,Bank/MTO,B2 median digital-to-account,2.9500,,,%,,17.0000
+benchmark,USA-PHL,Bank/MTO,B3 corridor average,4.5131,,,%,,58.0000
+benchmark,USA-PHL,Bank/MTO,share of cost in exchange rate (B3),31.0131,,,%,,
+benchmark,USA-PAK,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.4500,,,%,Ria,10.0000
+benchmark,USA-PAK,Bank/MTO,B2 median digital-to-account,2.1175,,,%,,10.0000
+benchmark,USA-PAK,Bank/MTO,B3 corridor average,3.8058,,,%,,25.0000
+benchmark,USA-PAK,Bank/MTO,share of cost in exchange rate (B3),43.2603,,,%,,
+benchmark,USA-KEN,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",0.6900,,,%,WorldRemit,19.0000
+benchmark,USA-KEN,Bank/MTO,B2 median digital-to-account,2.4150,,,%,,19.0000
+benchmark,USA-KEN,Bank/MTO,B3 corridor average,4.2604,,,%,,40.0000
+benchmark,USA-KEN,Bank/MTO,share of cost in exchange rate (B3),45.5770,,,%,,
+benchmark,USA-MEX,Bank/MTO,"B1 cheapest digital-to-account (RPW Q3 2025, £200 interpolated)",1.2600,,,%,Wise,10.0000
+benchmark,USA-MEX,Bank/MTO,B2 median digital-to-account,3.8850,,,%,,10.0000
+benchmark,USA-MEX,Bank/MTO,B3 corridor average,4.5343,,,%,,46.0000
+benchmark,USA-MEX,Bank/MTO,share of cost in exchange rate (B3),28.1906,,,%,,
+benchmark,GBP->INR,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.4305,,,%,Skrill,17.0000
+benchmark,GBP->INR,Bank/MTO,W2 median quote (Wise comparison),2.2650,,,%,,17.0000
+benchmark,GBP->KES,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.6722,,,%,Instarem,10.0000
+benchmark,GBP->KES,Bank/MTO,W2 median quote (Wise comparison),2.6632,,,%,,10.0000
+benchmark,GBP->NGN,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.8500,,,%,Wise,3.0000
+benchmark,GBP->NGN,Bank/MTO,W2 median quote (Wise comparison),2.6301,,,%,,3.0000
+benchmark,GBP->PHP,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.5780,,,%,WorldRemit,15.0000
+benchmark,GBP->PHP,Bank/MTO,W2 median quote (Wise comparison),3.0649,,,%,,15.0000
+benchmark,GBP->PKR,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",-0.2578,,,%,Moneygram,10.0000
+benchmark,GBP->PKR,Bank/MTO,W2 median quote (Wise comparison),1.1209,,,%,,10.0000
+benchmark,GBP->USD,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.6021,,,%,HSBC,18.0000
+benchmark,GBP->USD,Bank/MTO,W2 median quote (Wise comparison),2.8867,,,%,,18.0000
+benchmark,USD->INR,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.5814,,,%,State Bank of India,10.0000
+benchmark,USD->INR,Bank/MTO,W2 median quote (Wise comparison),1.9528,,,%,,10.0000
+benchmark,USD->KES,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",0.8072,,,%,Instarem,5.0000
+benchmark,USD->KES,Bank/MTO,W2 median quote (Wise comparison),2.9572,,,%,,5.0000
+benchmark,USD->MXN,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",-1.3107,,,%,Xoom,10.0000
+benchmark,USD->MXN,Bank/MTO,W2 median quote (Wise comparison),3.6652,,,%,,10.0000
+benchmark,USD->NGN,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",1.8138,,,%,Xoom,4.0000
+benchmark,USD->NGN,Bank/MTO,W2 median quote (Wise comparison),2.6286,,,%,,4.0000
+benchmark,USD->PHP,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",-1.1516,,,%,Xoom,8.0000
+benchmark,USD->PHP,Bank/MTO,W2 median quote (Wise comparison),3.5516,,,%,,8.0000
+benchmark,USD->PKR,Bank/MTO,"W1 cheapest quote (Wise comparison, Oct 2026)",-0.0816,,,%,WorldRemit,8.0000
+benchmark,USD->PKR,Bank/MTO,W2 median quote (Wise comparison),2.1511,,,%,,8.0000
+speed,,XRPL,XRPL ledger interval (live stream),3.9708,5.0473,6.0675,seconds,"median (low=p95, high=p99)",2727.0000
+speed,,XRPL,XRPL mean interval per 100 ledgers (history),3.9000,3.9100,3.9900,seconds,"median (low=p95, high=p99)",504.0000
+speed,,Solana,"Solana finality lag (live, after Alpenglow)",0.2128,0.4255,0.4255,seconds,"median (low=p95, high=p99)",3591.0000
+speed,,Solana,Solana slot time,0.2128,0.2128,0.2128,seconds,"median (low=p95, high=p99)",3591.0000
+speed,,Tron,Tron block interval (live),3.0000,3.0000,3.0000,seconds,"median (low=p95, high=p99)",1613.0000
+speed,,Tron,Tron solidification lag (live),57.0000,60.0000,60.0000,seconds,"median (low=p95, high=p99)",2189.0000
+risk,,XRP (XRPL),VaR 95% over 1 min on £200,0.3586,0.3494,0.3658,GBP,historical simulation; 90% block-bootstrap CI,3021480.0000
+risk,,XRP (XRPL),ES 95% over 1 min on £200,0.6466,,,GBP,,3021480.0000
+risk,,XRP (XRPL),VaR 99% over 1 min on £200,0.7690,0.7449,0.7937,GBP,historical simulation; 90% block-bootstrap CI,3021480.0000
+risk,,XRP (XRPL),ES 99% over 1 min on £200,1.2506,,,GBP,,3021480.0000
+risk,,XRP (XRPL),VaR 95% over 5 min on £200,0.7879,0.7668,0.8041,GBP,historical simulation; 90% block-bootstrap CI,3021448.0000
+risk,,XRP (XRPL),ES 95% over 5 min on £200,1.4360,,,GBP,,3021448.0000
+risk,,XRP (XRPL),VaR 99% over 5 min on £200,1.7090,1.6442,1.7573,GBP,historical simulation; 90% block-bootstrap CI,3021448.0000
+risk,,XRP (XRPL),ES 99% over 5 min on £200,2.8029,,,GBP,,3021448.0000
+risk,,XRP (XRPL),VaR 95% over 10 min on £200,1.1036,1.0741,1.1274,GBP,historical simulation; 90% block-bootstrap CI,3021408.0000
+risk,,XRP (XRPL),ES 95% over 10 min on £200,2.0150,,,GBP,,3021408.0000
+risk,,XRP (XRPL),VaR 99% over 10 min on £200,2.4031,2.3144,2.4748,GBP,historical simulation; 90% block-bootstrap CI,3021408.0000
+risk,,XRP (XRPL),ES 99% over 10 min on £200,3.9287,,,GBP,,3021408.0000
+risk,,XRP (XRPL),VaR 95% over 30 min on £200,1.8922,1.8458,1.9356,GBP,historical simulation; 90% block-bootstrap CI,3021248.0000
+risk,,XRP (XRPL),ES 95% over 30 min on £200,3.4382,,,GBP,,3021248.0000
+risk,,XRP (XRPL),VaR 99% over 30 min on £200,4.1320,3.9805,4.2678,GBP,historical simulation; 90% block-bootstrap CI,3021248.0000
+risk,,XRP (XRPL),ES 99% over 30 min on £200,6.6192,,,GBP,,3021248.0000
+risk,,XRP (XRPL),VaR 95% over 60 min on £200,2.6663,2.5905,2.7341,GBP,historical simulation; 90% block-bootstrap CI,3021008.0000
+risk,,XRP (XRPL),ES 95% over 60 min on £200,4.7902,,,GBP,,3021008.0000
+risk,,XRP (XRPL),VaR 99% over 60 min on £200,5.7633,5.5259,5.9811,GBP,historical simulation; 90% block-bootstrap CI,3021008.0000
+risk,,XRP (XRPL),ES 99% over 60 min on £200,9.1008,,,GBP,,3021008.0000
+risk,,XRP (XRPL),"Kupiec backtest p-value (30-day rolling VaR 99%, 10 min)",0.0000,,,p,689 exceedances vs 496 expected,49637.0000
+risk,,usdcusd,share of hours beyond 10 bp from $1,1.4312,,,%,Bitstamp hourly closes,50376.0000
+risk,,usdcusd,share of hours beyond 50 bp from $1,0.1529,,,%,Bitstamp hourly closes,50376.0000
+risk,,usdcusd,share of hours beyond 100 bp from $1,0.1012,,,%,Bitstamp hourly closes,50376.0000
+risk,,usdcusd,worst hourly close,0.8627,,,USD,,
+risk,,usdtusd,share of hours beyond 10 bp from $1,11.4249,,,%,Bitstamp hourly closes,46521.0000
+risk,,usdtusd,share of hours beyond 50 bp from $1,0.1827,,,%,Bitstamp hourly closes,46521.0000
+risk,,usdtusd,share of hours beyond 100 bp from $1,0.0537,,,%,Bitstamp hourly closes,46521.0000
+risk,,usdtusd,worst hourly close,0.9700,,,USD,,
+fees,,XRPL: XRP payment,"protocol fee per transfer (median; low=p99, high=max)",0.0000,0.0174,41.7645,GBP,"stratified random blocks, Oct 2024-Sep 2026",17005.0000
+fees,,Solana: USDC transfer,"protocol fee per transfer (median; low=p99, high=max)",0.0010,0.0892,0.3330,GBP,"stratified random blocks, Oct 2024-Sep 2026",445.0000
+fees,,"Tron: USDT transfer, all","protocol fee per transfer (median; low=p99, high=max)",0.0000,5.1662,7.3911,GBP,"stratified random blocks, Oct 2024-Sep 2026",38094.0000
+fees,,"Tron: USDT transfer, energy burned","protocol fee per transfer (median; low=p99, high=max)",2.3812,6.8366,7.3911,GBP,"stratified random blocks, Oct 2024-Sep 2026",6237.0000
