@@ -15,7 +15,7 @@
 - 105 tests, 95.5% coverage (network orchestration marked `pragma: no cover`), mypy clean, ruff clean.
 
 ## Next
-1. Check that the fresh-clone `make setup && make all` test passed (scratchpad/clone_all.log), and fix anything it found.
+1. ~~Fresh-clone check~~ **Passed** (06:55 UTC): `make setup && make all` exits 0 in a new clone; 105 tests, 95.5% coverage; every results/*.csv and chart is byte-identical to the committed ones (only the notebook's execution metadata differs). Fixed on the way: a breakeven edge case Hypothesis found, and the notebook calling the system Jupyter.
 2. After the collector stops (~29 Oct 02:20 UTC): `python -m plumbing run --all`, then `make notebook`, then refresh the numbers in article.md, cv_summary.md and README.md from results/best.csv, summary.csv and hypotheses.csv, and remove the "provisional" notes. Commit.
 3. Trim article.md from ~1,570 to ≤1,500 words (the "How I did this" section can lose ~80 words).
 4. Optional: write the raw-data MANIFEST (`python -m plumbing run --all` writes it), then push to GitHub (the user's action; the repo is local only).
