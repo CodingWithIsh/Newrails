@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+.DS_Store
+.ipynb_checkpoints/
+
+# Raw pulls stay local (large, re-creatable with `make refresh`); their manifests are committed.
+data/raw/**
+!data/raw/**/
+!data/raw/MANIFEST.csv
+!data/raw/README.md
+logs/
