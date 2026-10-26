@@ -1,4 +1,4 @@
-# Progress (updated 26 Oct 2026, 06:20 UTC)
+# Progress (updated 26 Oct 2026, 10:50 UTC)
 
 ## Done (all committed; 105 tests passing)
 - S0–S5: plan and review (docs/plan_review.md, rounds 1–7), ingest modules for RPW, prices, ramps, XRPL and chains, and the data cache.
@@ -17,7 +17,7 @@
 ## Next
 1. ~~Fresh-clone check~~ **Passed** (06:55 UTC): `make setup && make all` exits 0 in a new clone; 105 tests, 95.5% coverage; every results/*.csv and chart is byte-identical to the committed ones (only the notebook's execution metadata differs). Fixed on the way: a breakeven edge case Hypothesis found, and the notebook calling the system Jupyter.
 2. After the collector stops (~29 Oct 02:20 UTC): `python -m plumbing run --all`, then `make notebook`, then refresh the numbers in article.md, cv_summary.md and README.md from results/best.csv, summary.csv and hypotheses.csv, and remove the "provisional" notes. Commit.
-3. Trim article.md from ~1,570 to ≤1,500 words (the "How I did this" section can lose ~80 words).
+3. ~~Trim article~~ **Done** (10:50 UTC): about 1,480 words excluding the table; collection-length wording corrected to "first four hours (24 snapshots)" in the article and README.
 4. Optional: write the raw-data MANIFEST (`python -m plumbing run --all` writes it), then push to GitHub (the user's action; the repo is local only).
 
 ## Pages that need a human (bot checks blocked automated reading)

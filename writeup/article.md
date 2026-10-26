@@ -2,7 +2,7 @@
 
 *Does crypto remove the hidden cost of sending money home, or just move it?*
 
-**Draft, 26 October 2026.** The numbers come from the first 24 hours of a 72-hour collection; they will be refreshed when it finishes.
+**Draft, 26 October 2026.** The order-book numbers come from the first four hours (24 snapshots) of a 72-hour collection; they will be refreshed when it finishes.
 
 ---
 
@@ -10,7 +10,7 @@ In my last post I found that the exchange rate has quietly become the biggest pa
 
 The obvious follow-up is the one crypto keeps promising to answer. If you send dollars-on-a-blockchain instead of pounds-through-a-bank, does that hidden margin disappear?
 
-I tested it the same way as before: on a £200 transfer from the UK to India, Nigeria, the Philippines, Kenya and Pakistan, with $200 from the US to Mexico as a check. I compared three newer rails with the banks and transfer firms in the World Bank's data: XRP on the XRP Ledger, USDT on Tron, and USDC on Solana.
+I tested a £200 transfer from the UK to India, Nigeria, the Philippines, Kenya and Pakistan (plus $200 from the US to Mexico as a check). I compared the banks and transfer firms in the World Bank's data with three newer rails: XRP on the XRP Ledger, USDT on Tron and USDC on Solana.
 
 ## The short version
 
@@ -20,7 +20,7 @@ The margin mostly does disappear. The cost doesn't. It moves into fees, into a p
 
 ## Where did the exchange-rate margin go?
 
-To use a crypto rail you buy the coin with pounds on a UK exchange and send it on-chain. At the other end someone sells it for local currency on a local exchange and withdraws it to a bank or mobile wallet. Each step has a price. I measured the spreads from the exchanges' live order books every ten minutes and took the fees from their published schedules.
+A crypto transfer means buying the coin with pounds on a UK exchange, sending it on-chain, then selling it for local currency on an exchange at the other end and withdrawing it. Each step has a price. I measured spreads from live order books every ten minutes and took fees from published schedules.
 
 On the busy markets, the exchange-rate part is tiny. On Kraken, the gap between buying and selling USDT with pounds was about **0.01%**. Selling USDT for pesos on Coins.ph cost about the same. Across every route I tested, the median share of the cost sitting in exchange rates was **17%**, against 54% for the average UK money transfer.
 
@@ -35,7 +35,7 @@ Tron is the exception. Sending USDT there burns about **£2.38** of TRX in netwo
 
 ![The network is nearly free; leaving the exchange is not](../results/figures/fig7_fees.png)
 
-So the margin is mostly gone, and flat fees have taken its place. Flat fees hurt small transfers most, and £200 is a small transfer.
+So the margin is mostly gone, replaced by flat fees, which hurt small transfers most.
 
 ## Do the newer rails beat the cheapest provider?
 
@@ -54,7 +54,7 @@ Across thousands of simulated combinations of snapshot and fee, the best crypto 
 
 ![Before any local premium, the newer rails rarely beat the cheapest provider](../results/figures/fig2_cost_vs_benchmarks.png)
 
-I wrote six predictions down before looking at the results. This is the one I expected least: the rail itself isn't cheap enough. Good transfer firms already sit at 0.2–0.5%, and two exchange fees and a withdrawal fee rarely come in under that.
+The rail itself just isn't cheap enough. Good transfer firms already sit at 0.2–0.5%, and two exchange fees plus a withdrawal fee rarely come in under that.
 
 ## The local premium
 
@@ -89,10 +89,10 @@ Stablecoins remove most of that risk. USDC and USDT were within 0.5% of a dollar
 
 ## How I did this, and what the data can't tell us
 
-- **Traditional rails:** the World Bank's Remittance Prices Worldwide, Q3 2025 (my code reproduces its 6.36% global average), interpolated for each service between its £120 and £300 prices. I cross-checked against same-day quotes from Wise's public comparison tool.
-- **Newer rails:** order books from Kraken, Coinbase, Bitstamp, CoinDCX, Luno, Quidax, Coins.ph and Bitso every ten minutes; published fee schedules, recorded as ranges; and on-chain fees and timings from public XRP Ledger, Solana and Tron nodes.
+- **Traditional rails:** World Bank Remittance Prices Worldwide, Q3 2025 (my code reproduces its 6.36% global average), interpolated to £200 for each service and cross-checked against same-day quotes from Wise's comparison tool.
+- **Newer rails:** order books from eight exchanges every ten minutes, published fees recorded as ranges, and on-chain fees and timings from public XRP Ledger, Solana and Tron nodes.
 - **Uncertainty:** costs are a Monte Carlo over snapshots and fee ranges, and risk uses block-bootstrap intervals. I wrote down six hypotheses before running anything. Five held. The one that failed: XRP's price risk exceeded its saving in only two corridors, and those savings existed only because of the local premium.
-- **Limits:** these are prices for someone who already has accounts on two exchanges. They don't capture identity checks, whether an exchange works in a given country, or tax. Some local fees I could only confirm from secondary sources, so I used wide ranges. Order books are a snapshot of a few days. On-chain speed is not money in a bank account. The full list is in [LIMITATIONS.md](../LIMITATIONS.md).
+- **Limits:** these prices assume accounts on two exchanges already exist, and ignore identity checks, availability and tax. Some local fees came only from secondary sources, so I used wide ranges, and the order books cover days, not seasons. The full list is in [LIMITATIONS.md](../LIMITATIONS.md).
 
 All the code and data are on GitHub: [github.com/CodingWithIsh](https://github.com/CodingWithIsh). This is analysis of public data, not financial advice, and not a recommendation to buy any token.
 

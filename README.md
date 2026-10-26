@@ -6,7 +6,7 @@ Project 1 ([numbers-behind-the-money](https://github.com/CodingWithIsh/numbers-b
 
 ![Where your £200 goes](results/figures/fig1_where_200_goes.png)
 
-## Findings (provisional: first 24 h of a 72 h order-book collection)
+## Findings (provisional: first four hours of a 72-hour order-book collection)
 
 | | |
 |---|---|
