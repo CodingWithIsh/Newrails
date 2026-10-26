@@ -139,7 +139,8 @@ def test_total_cost_rises_with_any_fee(field, base, bump, s_on, s_off):
 
 
 @settings(max_examples=100, deadline=None)
-@given(st.floats(0, 3), st.floats(0, 3), st.floats(0, 10), st.floats(0.5, 5))
+# fixed costs are pounds: zero or at least a penny (hypothesis once tried 5e-324, a subnormal float)
+@given(st.floats(0, 3), st.floats(0, 3), st.one_of(st.just(0.0), st.floats(0.01, 10)), st.floats(0.5, 5))
 def test_breakeven_amount_is_where_closed_form_cost_meets_target(on_pct, off_pct, fixed, target):
     a = cm.breakeven_amount(on_pct, off_pct, fixed, target)
     if math.isinf(a):

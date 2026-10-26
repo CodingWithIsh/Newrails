@@ -1,6 +1,6 @@
 # Progress (updated 26 Oct 2026, 06:20 UTC)
 
-## Done (all committed; 122 tests passing)
+## Done (all committed; 105 tests passing)
 - S0–S5: plan and review (docs/plan_review.md, rounds 1–7), ingest modules for RPW, prices, ramps, XRPL and chains, and the data cache.
 - S6: data/manual/fees.yaml (31 fees, 16 unverified) and data/manual/availability.yaml (37 route legs).
 - S7: cost_model.py (order-book walking, leg decomposition, routes, Monte Carlo, closed-form breakeven).
@@ -12,7 +12,7 @@
 
 ## Also done (06:20–06:40 UTC)
 - notebooks/analysis.ipynb (executed), LIMITATIONS.md, ASSUMPTIONS.md (A1–A27), DATA_SOURCES.md, writeup/article.md, writeup/cv_summary.md, README.md, Makefile, requirements.lock, CI workflow, LICENSE (MIT).
-- 131 tests, 95.5% coverage (network orchestration marked `pragma: no cover`), mypy clean, ruff clean.
+- 105 tests, 95.5% coverage (network orchestration marked `pragma: no cover`), mypy clean, ruff clean.
 
 ## Next
 1. Check that the fresh-clone `make setup && make all` test passed (scratchpad/clone_all.log), and fix anything it found.

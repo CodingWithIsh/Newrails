@@ -439,4 +439,6 @@ def breakeven_amount(on_pct: float, off_pct: float, fixed: float, target_pct: fl
     need = 1 - target_pct / 100
     if keep <= need:
         return float("inf")
+    if fixed == 0:
+        return 0.0  # no fixed costs: every amount already meets the target
     return fixed / (1 - need / keep)

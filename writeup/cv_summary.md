@@ -2,7 +2,7 @@
 
 ## Three bullets
 
-- Built a reproducible Python pipeline (pandas, SciPy, pydantic, pytest/Hypothesis, CI) comparing the all-in cost of £200 remittances on bank/MTO rails with XRP, USDT on Tron and USDC on Solana across 5 UK corridors. It walks live order books from 9 exchanges, uses ~390k sampled on-chain transactions and 3M one-minute prices, has 131 tests (96% coverage), and reproduces the World Bank's 6.36% global average.
+- Built a reproducible Python pipeline (pandas, SciPy, pydantic, pytest/Hypothesis, CI) comparing the all-in cost of £200 remittances on bank/MTO rails with XRP, USDT on Tron and USDC on Solana across 5 UK corridors. It walks live order books from 9 exchanges, uses ~390k sampled on-chain transactions and 3M one-minute prices, has 105 tests (96% coverage), and reproduces the World Bank's 6.36% global average.
 - Showed that the newer rails shrink the exchange-rate share of cost from 54% (UK average) to a median of 17%. The cost moves into flat fees (Kraken's USDC withdrawal fee is ~760× the network fee), and once local premiums were excluded, the best crypto route beat the cheapest digital provider in at most 4% of simulations in each of 4 corridors.
 - Quantified risk and speed with pre-registered hypotheses. XRP's 10-minute 99% VaR is £2.40 on £200 (block-bootstrap CI; a 30-day rolling VaR fails the Kupiec test). USDC fell to $0.81 in March 2023. Solana finalises in about 0.2 s after Alpenglow, yet 57–85% of bank/MTO services already deliver within an hour.
 

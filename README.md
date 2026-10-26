@@ -25,7 +25,7 @@ The six hypotheses were fixed before any result was computed ([PLAN.md](PLAN.md)
 
 ```bash
 make setup     # .venv + pinned requirements (Python 3.12+; developed on 3.14)
-make all       # lint, 131 tests (96% coverage), results/*.csv, 8 charts, executed notebook
+make all       # lint, 105 tests (96% coverage), results/*.csv, 8 charts, executed notebook
 ```
 
 `make all` reads only the committed `data/cache/`. To re-pull everything from the original sources (network, about 20 minutes, no keys or accounts needed):
