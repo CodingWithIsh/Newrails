@@ -10,11 +10,15 @@
 ## Still running
 - The **ramp collector runs until about 29 Oct 02:20 UTC** (`pgrep -fl "plumbing collect"`). After it stops, re-run `python -m plumbing run --all`. That refreshes results from the full 72 hours. Then update the numbers quoted in writeup/article.md and writeup/cv_summary.md from results/summary.csv and results/hypotheses.csv.
 
+## Also done (06:20–06:40 UTC)
+- notebooks/analysis.ipynb (executed), LIMITATIONS.md, ASSUMPTIONS.md (A1–A27), DATA_SOURCES.md, writeup/article.md, writeup/cv_summary.md, README.md, Makefile, requirements.lock, CI workflow, LICENSE (MIT).
+- 131 tests, 95.5% coverage (network orchestration marked `pragma: no cover`), mypy clean, ruff clean.
+
 ## Next
-1. notebooks/analysis.ipynb: tells the story with the 8 charts, calling report.build() and plots.
-2. LIMITATIONS.md; finish ASSUMPTIONS.md (fees, Revolut XRP proxy, TDS, swaps, held-flat RPW) and DATA_SOURCES.md (full table).
-3. writeup/article.md (1,200–1,500 words, voice of article 2) and writeup/cv_summary.md.
-4. README.md, Makefile (setup/test/lint/all/refresh), requirements.lock, .github/workflows/ci.yml, coverage ≥ 85%, and a fresh-clone `make all` check.
+1. Check that the fresh-clone `make setup && make all` test passed (scratchpad/clone_all.log), and fix anything it found.
+2. After the collector stops (~29 Oct 02:20 UTC): `python -m plumbing run --all`, then `make notebook`, then refresh the numbers in article.md, cv_summary.md and README.md from results/best.csv, summary.csv and hypotheses.csv, and remove the "provisional" notes. Commit.
+3. Trim article.md from ~1,570 to ≤1,500 words (the "How I did this" section can lose ~80 words).
+4. Optional: write the raw-data MANIFEST (`python -m plumbing run --all` writes it), then push to GitHub (the user's action; the repo is local only).
 
 ## Pages that need a human (bot checks blocked automated reading)
 - coindcx.com/fees, guide.luno.com.ng (Nigeria fees and limits), and the Luno Kenya fee page. If you read them, update the `unverified` entries in data/manual/fees.yaml and re-run.
