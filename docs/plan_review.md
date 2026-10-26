@@ -70,3 +70,16 @@ Round 1 was driven by evidence (test pulls on 26 October 2026). Later rounds wer
 | 6.3 | The snapshot collector needs wall-clock time. | Start it first, before the other ingest work. |
 
 **Convergence.** Round 6 changed only the build order and the sample caps, with no change to any headline definition, so the review stopped there.
+
+---
+
+## Round 7: corrections forced by the data (after collection, before any result)
+
+These changes were made after the data arrived but before any cost or risk result was computed. They are recorded here so nothing is changed silently.
+
+| # | What the data showed | Change |
+|---|---|---|
+| 7.1 | The stress-episode rule used each hour's **high and low**. Bitstamp's highs and lows include stray trades (one USDT print at $2,959 in November 2022), and the rule found 329 "episodes". | The rule now uses the **hourly close**, and prices outside $0.50–$1.50 are dropped as data errors and counted (`peg_bad_prints.parquet`: 3 hourly and 8 minute candles, all USDT). This leaves 32 episodes. The worst is USDC at $0.863 (11–13 March 2023, SVB); USDT's lowest was $0.97 (May 2022, Terra). |
+| 7.2 | The first two minutes of the Solana finality sampler queried the three commitment levels one after another, so the finalised slot could come out *newer* than the processed one. | That file is set aside (`*_DISCARDED.jsonl.bak`) and never read. Sampling restarted with all three levels in one JSON-RPC batch. |
+| 7.3 | Bitstamp USDT/USD starts on 10 June 2021, not 1 January. CoinDCX and Coins.ph serve only their last 1,000 days (from February 2024). Official NGN, KES and PKR rates are daily only from March 2024; before that, five quarterly RPW interbank points are available. | Each series is reported over the dates it actually covers. India's premium history before 2024 uses WazirX. |
+| 7.4 | The peg is measured on **hourly closes** for the full window (minute data is held only around episodes). | H5 is tested as a "share of hours", and the article says so. |

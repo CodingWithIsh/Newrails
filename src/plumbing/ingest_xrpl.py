@@ -177,6 +177,17 @@ def parse_stream(path: Path) -> pd.DataFrame:
 # ------------------------------------------------------------------ build
 
 
+def build_live(raw: Path = RAW, cache: Path = CACHE) -> dict[str, Path]:
+    """Rebuild the live-interval table from every recorded stream file (offline)."""
+    streams = sorted((raw / "xrpl" / "stream").glob("*.jsonl"))
+    if not streams:
+        return {}
+    live = pd.concat([parse_stream(p) for p in streams], ignore_index=True)
+    path = cache / "xrpl_live_intervals.parquet"
+    live.to_parquet(path, index=False, compression="zstd")
+    return {"xrpl_live": path}
+
+
 def build_cache(client: Client | None = None, n_fee_ledgers: int = 1008, n_spans: int = 504, span: int = 100,
                 cache: Path = CACHE, raw: Path = RAW, stream_minutes: float = 0) -> dict[str, Path]:
     client = client or Client()
@@ -210,9 +221,5 @@ def build_cache(client: Client | None = None, n_fee_ledgers: int = 1008, n_spans
     stream = raw / "xrpl" / "stream" / f"ledgers_{utcnow():%Y%m%d}.jsonl"
     if stream_minutes > 0:
         stream_ledgers(stream_minutes, stream)
-    streams = sorted((raw / "xrpl" / "stream").glob("*.jsonl"))
-    if streams:
-        live = pd.concat([parse_stream(p) for p in streams], ignore_index=True)
-        out["xrpl_live"] = cache / "xrpl_live_intervals.parquet"
-        live.to_parquet(out["xrpl_live"], index=False, compression="zstd")
+    out.update(build_live(raw, cache))
     return out

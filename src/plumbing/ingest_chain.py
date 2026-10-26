@@ -234,8 +234,8 @@ def sample_tron_finality(client: Client, minutes: float, every_s: float, out: Pa
 
 def parse_solana_live(path: Path) -> pd.DataFrame:
     rows = [r for r in iter_jsonl(path) if "error" not in r]
-    df = pd.DataFrame(rows)
-    df["at"] = pd.to_datetime(df["at"])
+    df = pd.DataFrame(rows).rename(columns={"at": "sampled_at"})  # "at" would shadow DataFrame.at
+    df["sampled_at"] = pd.to_datetime(df["sampled_at"])
     df["lag_confirmed"] = df["processed"] - df["confirmed"]
     df["lag_finalized"] = df["processed"] - df["finalized"]
     return df.drop(columns=["perf"], errors="ignore")
@@ -254,8 +254,8 @@ def solana_slot_seconds(path: Path) -> pd.DataFrame:
 
 def parse_tron_live(path: Path) -> pd.DataFrame:
     rows = [r for r in iter_jsonl(path) if "error" not in r]
-    df = pd.DataFrame(rows)
-    df["at"] = pd.to_datetime(df["at"])
+    df = pd.DataFrame(rows).rename(columns={"at": "sampled_at"})
+    df["sampled_at"] = pd.to_datetime(df["sampled_at"])
     df["lag_blocks"] = df["head"] - df["solid"]
     df["lag_s"] = (df["head_ts"] - df["solid_ts"]) / 1000
     return df
@@ -269,6 +269,19 @@ def tron_block_intervals(live: pd.DataFrame) -> pd.Series:
 
 
 # ------------------------------------------------------------------ build
+
+
+def build_live(raw: Path = RAW, cache: Path = CACHE) -> dict[str, Path]:
+    """Rebuild finality and slot-time tables from every recorded live-sample file (offline)."""
+    out: dict[str, Path] = {}
+    for name, parse, pattern in (("solana_live", parse_solana_live, "solana/live/*.jsonl"),
+                                 ("tron_live", parse_tron_live, "tron/live/*.jsonl"),
+                                 ("solana_slot_seconds", solana_slot_seconds, "solana/live/*.jsonl")):
+        files = sorted(raw.glob(pattern))
+        if files:
+            out[name] = cache / f"{name}.parquet"
+            pd.concat([parse(p) for p in files], ignore_index=True).to_parquet(out[name], index=False)
+    return out
 
 
 def build_cache(client: Client | None = None, n_solana: int = 120, n_tron: int = 480,
@@ -306,14 +319,5 @@ def build_cache(client: Client | None = None, n_solana: int = 120, n_tron: int =
     out["tron_prices"] = cache / "tron_resource_prices.parquet"
     pd.concat(prices.values(), ignore_index=True).to_parquet(out["tron_prices"], index=False)
 
-    for name, parse, pattern in (("solana_live", parse_solana_live, "solana/live/*.jsonl"),
-                                 ("tron_live", parse_tron_live, "tron/live/*.jsonl")):
-        files = sorted(raw.glob(pattern))
-        if files:
-            out[name] = cache / f"{name}.parquet"
-            pd.concat([parse(p) for p in files], ignore_index=True).to_parquet(out[name], index=False)
-    files = sorted(raw.glob("solana/live/*.jsonl"))
-    if files:
-        out["solana_slot_s"] = cache / "solana_slot_seconds.parquet"
-        pd.concat([solana_slot_seconds(p) for p in files], ignore_index=True).to_parquet(out["solana_slot_s"], index=False)
+    out.update(build_live(raw, cache))
     return out

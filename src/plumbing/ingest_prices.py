@@ -177,10 +177,24 @@ def fetch_bitstamp(client: Client, pair: str, step: int, start: datetime, end: d
     return out[(out.ts >= pd.Timestamp(start)) & (out.ts < pd.Timestamp(end))].reset_index(drop=True)
 
 
+BAD_PRINT_BAND = (0.5, 1.5)  # a stablecoin trade outside $0.50-$1.50 is a data error, not a depeg
+
+
+def drop_bad_prints(candles: pd.DataFrame, band: tuple[float, float] = BAD_PRINT_BAND) -> tuple[pd.DataFrame, int]:
+    """Remove candles with any price outside `band`; returns the clean frame and how many were removed.
+
+    Bitstamp's hourly highs and lows include stray trades (e.g. one USDT print at $2,959 in November
+    2022), so episode detection uses closes and these candles are excluded and counted.
+    """
+    lo, hi = band
+    ok = candles[["open", "high", "low", "close"]].apply(lambda c: c.between(lo, hi)).all(axis=1)
+    return candles[ok].reset_index(drop=True), int((~ok).sum())
+
+
 def peg_episodes(hourly: pd.DataFrame, threshold: float = PEG_EPISODE_THRESHOLD, merge_gap_h: int = 24) -> pd.DataFrame:
-    """Stress episodes found by rule, not by eye: hours whose low or high is more than `threshold`
-    from $1, merged when less than `merge_gap_h` hours apart."""
-    dev = np.maximum((1 - hourly["low"]).clip(lower=0), (hourly["high"] - 1).clip(lower=0))
+    """Stress episodes found by rule, not by eye: hours whose close is more than `threshold` from $1,
+    merged when less than `merge_gap_h` hours apart."""
+    dev = (hourly["close"] - 1).abs()
     hits = hourly.loc[dev > threshold, "ts"].sort_values()
     episodes: list[dict[str, Any]] = []
     for ts in hits:
@@ -190,10 +204,36 @@ def peg_episodes(hourly: pd.DataFrame, threshold: float = PEG_EPISODE_THRESHOLD,
         else:
             episodes.append({"start": ts, "end": ts, "hours": 1})
     out = pd.DataFrame(episodes, columns=["start", "end", "hours"])
-    if len(out):
-        out["max_dev"] = [float(dev[(hourly.ts >= s) & (hourly.ts <= e)].max()) for s, e in zip(out.start, out.end, strict=True)]
-    else:
-        out["max_dev"] = pd.Series(dtype=float)
+    signed = hourly["close"] - 1
+    out["max_dev"] = [float(dev[(hourly.ts >= s) & (hourly.ts <= e)].max()) for s, e in zip(out.start, out.end, strict=True)]
+    out["worst_price"] = [float(1 + signed[(hourly.ts >= s) & (hourly.ts <= e)].loc[lambda x: x.abs().idxmax()])
+                          if len(out) else np.nan for s, e in zip(out.start, out.end, strict=True)]
+    return out
+
+
+def build_pegs(client: Client, cache: Path = CACHE, raw: Path = RAW, window=PRICE_WINDOW) -> dict[str, Path]:
+    start, end = window
+    t0 = datetime(start.year, start.month, start.day, tzinfo=UTC)
+    t1 = datetime(end.year, end.month, end.day, tzinfo=UTC) + timedelta(days=1)
+    hourly, minutes, episodes, dropped = [], [], [], []
+    for pair in ("usdcusd", "usdtusd"):
+        h, n_bad = drop_bad_prints(fetch_bitstamp(client, pair, 3600, t0, t1, raw))
+        schemas.CANDLES.validate(h)
+        hourly.append(h.assign(pair=pair))
+        ep = peg_episodes(h).assign(pair=pair)
+        episodes.append(ep)
+        for s, e in zip(ep.start, ep.end, strict=True):
+            m = fetch_bitstamp(client, pair, 60, (s - pd.Timedelta(hours=24)).to_pydatetime(),
+                               (e + pd.Timedelta(hours=72)).to_pydatetime(), raw)
+            m, n_bad_m = drop_bad_prints(m)
+            minutes.append(m.assign(pair=pair, episode_start=s))
+            dropped.append({"pair": pair, "resolution": "1m", "episode_start": s, "dropped": n_bad_m})
+        dropped.append({"pair": pair, "resolution": "1h", "episode_start": pd.NaT, "dropped": n_bad})
+    out = {}
+    for name, frames in (("peg_1h", hourly), ("peg_1m_episodes", minutes), ("peg_episodes", episodes),
+                         ("peg_bad_prints", [pd.DataFrame(dropped)])):
+        out[name] = cache / f"{name}.parquet"
+        pd.concat(frames, ignore_index=True).to_parquet(out[name], index=False, compression="zstd")
     return out
 
 
@@ -367,20 +407,7 @@ def build_cache(client: Client | None = None, cache: Path = CACHE, raw: Path = R
     out["native_daily"] = cache / "native_daily.parquet"
     pd.concat(daily, ignore_index=True).to_parquet(out["native_daily"], index=False, compression="zstd")
 
-    peg_hourly, peg_minutes, episodes = [], [], []
-    for pair in ("usdcusd", "usdtusd"):
-        h = fetch_bitstamp(client, pair, 3600, t0, t1, raw)
-        schemas.CANDLES.validate(h)
-        peg_hourly.append(h.assign(pair=pair))
-        ep = peg_episodes(h).assign(pair=pair)
-        episodes.append(ep)
-        for s, e in zip(ep.start, ep.end, strict=True):
-            m = fetch_bitstamp(client, pair, 60, (s - pd.Timedelta(hours=24)).to_pydatetime(),
-                               (e + pd.Timedelta(hours=72)).to_pydatetime(), raw)
-            peg_minutes.append(m.assign(pair=pair, episode_start=s))
-    for name, frames in (("peg_1h", peg_hourly), ("peg_1m_episodes", peg_minutes), ("peg_episodes", episodes)):
-        out[name] = cache / f"{name}.parquet"
-        pd.concat(frames, ignore_index=True).to_parquet(out[name], index=False, compression="zstd")
+    out.update(build_pegs(client, cache, raw))
 
     xrp_gbp = fetch_bitstamp(client, "xrpgbp", 60, datetime(2026, 9, 1, tzinfo=UTC), datetime(2026, 10, 1, tzinfo=UTC), raw)
     out["xrp_gbp_1m_bitstamp"] = cache / "xrp_gbp_1m_bitstamp_2026_09.parquet"
