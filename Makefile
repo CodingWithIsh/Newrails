@@ -9,6 +9,7 @@ setup:            ## create .venv and install pinned dependencies
 	$(PIP) install --upgrade pip
 	$(PIP) install -r requirements.lock
 	$(PIP) install -e . --no-deps
+	$(PY) -m ipykernel install --sys-prefix --name plumbing --display-name "plumbing (.venv)"
 
 test:             ## offline tests with coverage
 	$(PY) -m pytest --cov=plumbing --cov-report=term-missing --cov-fail-under=85
@@ -21,7 +22,8 @@ results:          ## results/*.csv and results/figures/*.png from data/cache
 	$(PY) -m plumbing run --all
 
 notebook:         ## execute the analysis notebook in place
-	$(PY) -m jupyter nbconvert --to notebook --execute --inplace notebooks/analysis.ipynb
+	cd notebooks && ../$(PY) -m jupyter nbconvert --to notebook --execute --inplace \
+		--ExecutePreprocessor.kernel_name=plumbing --ExecutePreprocessor.timeout=900 analysis.ipynb
 
 all: lint test results notebook
 
