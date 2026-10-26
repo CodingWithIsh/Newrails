@@ -2,8 +2,6 @@
 
 *Does crypto remove the hidden cost of sending money home, or just move it?*
 
-**Draft, 26 October 2026.** The order-book numbers come from the first four hours (24 snapshots) of a 72-hour collection; they will be refreshed when it finishes.
-
 ---
 
 In my last post I found that the exchange rate has quietly become the biggest part of what it costs to send money from the UK. Upfront fees have more than halved since 2011, but the margin hidden in the rate hasn't moved, and it now makes up **54% of the total**.
@@ -11,6 +9,8 @@ In my last post I found that the exchange rate has quietly become the biggest pa
 The obvious follow-up is the one crypto keeps promising to answer. If you send dollars-on-a-blockchain instead of pounds-through-a-bank, does that hidden margin disappear?
 
 I tested a £200 transfer from the UK to India, Nigeria, the Philippines, Kenya and Pakistan (plus $200 from the US to Mexico as a check). I compared the banks and transfer firms in the World Bank's data with three newer rails: XRP on the XRP Ledger, USDT on Tron and USDC on Solana.
+
+*A note on the numbers: the exchange prices come from 26 ten-minute snapshots on the morning of 26 October, the first four hours of a three-day collection. I'll update this post when the rest is in.*
 
 ## The short version
 
@@ -24,7 +24,7 @@ A crypto transfer means buying the coin with pounds on a UK exchange, sending it
 
 On the busy markets, the exchange-rate part is tiny. On Kraken, the gap between buying and selling USDT with pounds was about **0.01%**. Selling USDT for pesos on Coins.ph cost about the same. Across every route I tested, the median share of the cost sitting in exchange rates was **17%**, against 54% for the average UK money transfer.
 
-That's where the good news stops, because the cost reappears as fees:
+Then the cost reappears as fees:
 
 - **Trading fees at both ends.** Kraken charges 0.2% to buy a stablecoin and up to 0.8% for XRP. Local exchanges charge roughly 0.25–0.8% to sell.
 - **Withdrawal fees.** Kraken charges 1 USDT (about 75p) to send USDT on Tron and £0.77 to send USDC on Solana. Revolut charges a flat £3 to withdraw a stablecoin. On £200, that is 1.5% before anything else.
@@ -39,13 +39,13 @@ So the margin is mostly gone, replaced by flat fees, which hurt small transfers 
 
 ## Do the newer rails beat the cheapest provider?
 
-This is the comparison that matters, because nobody should compare crypto with the average. The cheapest digital services in the World Bank's survey, scaled to £200, are remarkably cheap. One costs 0.15% to India (State Bank of India, if you bank with them at both ends), 0.44% to the Philippines, and 0.38% to Kenya.
+Crypto has to beat the cheapest services, not the average. The cheapest digital services in the World Bank's survey, scaled to £200, are remarkably cheap. One costs 0.15% to India (State Bank of India, if you bank with them at both ends), 0.44% to the Philippines, and 0.38% to Kenya.
 
-Set aside any local premium (more on that below), and the best crypto route in each corridor costs:
+Set aside local premiums (more below), and the best crypto route in each corridor costs:
 
 | Corridor | Best crypto route | Cheapest provider | Median digital provider |
 |---|---|---|---|
-| UK → India | 1.37% (USDT) | 0.15% | 1.50% |
+| UK → India | 1.36% (USDT) | 0.15% | 1.50% |
 | UK → Nigeria | 1.07% (USDT) | 0.01% | 0.58% |
 | UK → Philippines | 0.77% (USDT) | 0.44% | 1.44% |
 | UK → Kenya | 1.75% (USDT) | 0.38% | 1.77% |
@@ -70,7 +70,7 @@ A premium like this exists because moving money in and out of the country is res
 
 ## What about speed and risk?
 
-The blockchains are fast. In my live samples an XRP Ledger closed every **4 seconds** and Solana confirmed in about **0.2 seconds**, after a big upgrade to its consensus five days earlier. Tron took about **57 seconds** to make a payment irreversible.
+The blockchains are fast. In my live samples the XRP Ledger closed every **4 seconds**, Solana confirmed in about **0.2 seconds** (after a consensus upgrade five days earlier), and Tron took about **57 seconds** to make a payment irreversible.
 
 But 57–85% of the bank and transfer-firm services in the World Bank's data already deliver in under an hour. The slow parts of a crypto transfer happen off the ledger: verifying your identity on two exchanges, withdrawal processing, and, if you've never bought crypto in the UK, the FCA's 24-hour cooling-off period.
 
@@ -82,17 +82,17 @@ Stablecoins remove most of that risk. USDC and USDT were within 0.5% of a dollar
 
 ## What it means if you're sending money home
 
-- **If you already use a cheap online transfer firm, you're probably paying less than the newer rails would cost you.** The cheapest providers in these corridors beat every crypto route I modelled.
+- **If you already use a cheap online transfer firm, you're probably paying less.** The cheapest providers beat every crypto route I modelled.
 - **Watch flat fees.** A £3 withdrawal fee is 1.5% of £200 but only 0.3% of £1,000. The newer rails look better the more you send.
 - **A "better rate" in crypto is often a premium that exists because of capital controls.** It can disappear, and it comes with tax and legal questions for the person receiving it.
-- **Pakistan is a reminder that the last mile matters.** No regulated exchange publishes a rupee market I could measure, so for now the newer rails there have no measurable way to cash out.
+- **The last mile matters.** In Pakistan, no regulated exchange publishes a rupee market I could measure, so the newer rails had no measurable way to cash out.
 
 ## How I did this, and what the data can't tell us
 
 - **Traditional rails:** World Bank Remittance Prices Worldwide, Q3 2025 (my code reproduces its 6.36% global average), interpolated to £200 for each service and cross-checked against same-day quotes from Wise's comparison tool.
 - **Newer rails:** order books from eight exchanges every ten minutes, published fees recorded as ranges, and on-chain fees and timings from public XRP Ledger, Solana and Tron nodes.
 - **Uncertainty:** costs are a Monte Carlo over snapshots and fee ranges, and risk uses block-bootstrap intervals. I wrote down six hypotheses before running anything. Five held. The one that failed: XRP's price risk exceeded its saving in only two corridors, and those savings existed only because of the local premium.
-- **Limits:** these prices assume accounts on two exchanges already exist, and ignore identity checks, availability and tax. Some local fees came only from secondary sources, so I used wide ranges, and the order books cover days, not seasons. The full list is in [LIMITATIONS.md](../LIMITATIONS.md).
+- **Limits:** these prices assume accounts on two exchanges already exist, and ignore identity checks, availability and tax. Some local fees came only from secondary sources, so I used wide ranges, and the order books so far cover one morning, not days or seasons. The full list is in [LIMITATIONS.md](../LIMITATIONS.md).
 
 All the code and data are on GitHub: [github.com/CodingWithIsh/Newrails](https://github.com/CodingWithIsh/Newrails). This is analysis of public data, not financial advice, and not a recommendation to buy any token.
 
