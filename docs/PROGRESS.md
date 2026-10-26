@@ -1,4 +1,10 @@
-# Progress (updated 26 Oct 2026, 10:50 UTC)
+# Progress (updated 26 Oct 2026, 16:45 UTC)
+
+## Status at 16:45 UTC
+- The collector ran 68 rounds from 02:21 UTC, then restarted at 14:48 UTC with the same end time. Round 9 of the new run finished at 16:07, with 33/33 books every round. It ends around 29 Oct 02:20 UTC, later if the Mac sleeps.
+- Two data facts to carry into the refresh:
+  - WazirX USDT/INR has zero volume from 19 Jul 2024 to 23 Oct 2025 (trading halt). The close is frozen at ₹88.01 on all 462 days. `report.premium_history` doesn't filter them yet. So chart 3 draws a false India path for those 15 months, and the article's "about 5% in every year from 2021 to 2024" is off for 2024: the median over traded days only is 6.2%, against 5.0% with the frozen days. **Fix in the refresh:** drop zero-volume days (log it in plan_review round 8), and consider CoinDCX for India from Feb 2024.
+  - Wise comparison quotes are not all fresh: the median age is about 1 hour, but UK bank quotes are typically 57–67 hours old (`collected_at`).
 
 ## Done (all committed; 105 tests passing)
 - S0–S5: plan and review (docs/plan_review.md, rounds 1–7), ingest modules for RPW, prices, ramps, XRPL and chains, and the data cache.
