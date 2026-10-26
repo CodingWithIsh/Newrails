@@ -22,7 +22,7 @@ results:          ## results/*.csv and results/figures/*.png from data/cache
 	$(PY) -m plumbing run --all
 
 notebook:         ## execute the analysis notebook in place
-	cd notebooks && ../$(PY) -m jupyter nbconvert --to notebook --execute --inplace \
+	cd notebooks && ../$(PY) -m nbconvert --to notebook --execute --inplace \
 		--ExecutePreprocessor.kernel_name=plumbing --ExecutePreprocessor.timeout=900 analysis.ipynb
 
 all: lint test results notebook
