@@ -16,8 +16,10 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import yaml
 
-from plumbing.config import CACHE, RAW
+from plumbing import schemas
+from plumbing.config import CACHE, MANUAL, RAW
 from plumbing.net import Client, append_jsonl, envelope, iter_jsonl, utcnow
 
 log = logging.getLogger(__name__)
@@ -313,4 +315,28 @@ def build_cache(raw: Path = SNAPSHOTS, cache: Path = CACHE) -> dict[str, Path]:
         path = cache / f"{name}.parquet"
         frame.to_parquet(path, index=False, compression="zstd")
         out[name] = path
+    return out
+
+
+# ---------------------------------------------------------------- hand-collected fees and availability
+
+
+def load_fees(path: Path = MANUAL / "fees.yaml") -> list[schemas.FeeEntry]:
+    with path.open() as fh:
+        return [schemas.FeeEntry(**row) for row in yaml.safe_load(fh)]
+
+
+def load_availability(path: Path = MANUAL / "availability.yaml") -> list[schemas.Availability]:
+    with path.open() as fh:
+        return [schemas.Availability(**row) for row in yaml.safe_load(fh)]
+
+
+def fee_lookup(fees: Iterable[schemas.FeeEntry]) -> dict[tuple[str, str, str, str | None], schemas.FeeEntry]:
+    """Index fees by (provider, leg, asset, network); duplicate keys are an error."""
+    out: dict[tuple[str, str, str, str | None], schemas.FeeEntry] = {}
+    for f in fees:
+        key = (f.provider, f.leg, f.asset, f.network)
+        if key in out:
+            raise ValueError(f"duplicate fee entry {key}")
+        out[key] = f
     return out

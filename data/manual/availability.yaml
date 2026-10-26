@@ -1,0 +1,41 @@
+# Does each leg of a route exist? Collected 26 October 2026.
+# "unverified" = could not be confirmed from the provider's own page; such routes are reported but flagged.
+
+- {venue: kraken, asset: XRP, direction: buy_with_fiat, fiat: GBP, status: "yes", sources: [{url: "https://api.kraken.com/0/public/AssetPairs?pair=XRPGBP", accessed: 2026-10-26}]}
+- {venue: kraken, asset: USDC, direction: buy_with_fiat, fiat: GBP, status: "yes", sources: [{url: "https://api.kraken.com/0/public/AssetPairs?pair=USDCGBP", accessed: 2026-10-26}]}
+- {venue: kraken, asset: USDT, direction: buy_with_fiat, fiat: GBP, status: "yes", sources: [{url: "https://api.kraken.com/0/public/AssetPairs?pair=USDTGBP", accessed: 2026-10-26}]}
+- {venue: kraken, asset: XRP, network: XRPL, direction: withdraw, status: "yes", sources: [{url: "https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums", accessed: 2026-10-26}]}
+- {venue: kraken, asset: USDT, network: TRON, direction: withdraw, status: "yes", sources: [{url: "https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums", accessed: 2026-10-26}]}
+- {venue: kraken, asset: USDC, network: SOLANA, direction: withdraw, status: "yes", sources: [{url: "https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums", accessed: 2026-10-26}]}
+- {venue: coinbase, asset: XRP, direction: buy_with_fiat, fiat: GBP, status: "no", note: "XRP-GBP book status 'delisted' on api.exchange.coinbase.com", sources: [{url: "https://api.exchange.coinbase.com/products/XRP-GBP", accessed: 2026-10-26}]}
+- {venue: coinbase, asset: USDC, direction: buy_with_fiat, fiat: GBP, status: "yes", sources: [{url: "https://api.exchange.coinbase.com/products/USDC-GBP", accessed: 2026-10-26}]}
+- {venue: coinbase, asset: USDT, direction: buy_with_fiat, fiat: GBP, status: "yes", sources: [{url: "https://api.exchange.coinbase.com/products/USDT-GBP", accessed: 2026-10-26}]}
+- {venue: revolut, asset: XRP, network: XRPL, direction: withdraw, status: "yes", sources: [{url: "https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf", accessed: 2026-10-26}]}
+- {venue: revolut, asset: USDT, network: TRON, direction: withdraw, status: unverified, note: "Withdrawals of 'all other cryptocurrencies' are priced; the network list is in-app only"}
+- {venue: revolut, asset: USDC, network: SOLANA, direction: withdraw, status: unverified, note: "As USDT"}
+
+- {venue: coindcx, asset: USDT, direction: sell_for_fiat, fiat: INR, status: "yes", sources: [{url: "https://public.coindcx.com/market_data/orderbook?pair=I-USDT_INR", accessed: 2026-10-26}]}
+- {venue: coindcx, asset: USDC, direction: sell_for_fiat, fiat: INR, status: "yes", sources: [{url: "https://public.coindcx.com/market_data/orderbook?pair=I-USDC_INR", accessed: 2026-10-26}]}
+- {venue: coindcx, asset: XRP, direction: sell_for_fiat, fiat: INR, status: "yes", sources: [{url: "https://public.coindcx.com/market_data/orderbook?pair=I-XRP_INR", accessed: 2026-10-26}]}
+- {venue: coindcx, asset: USDT, network: TRON, direction: deposit, status: unverified, note: "Fee page behind a bot check"}
+- {venue: coindcx, asset: USDC, network: SOLANA, direction: deposit, status: unverified}
+- {venue: coindcx, asset: XRP, network: XRPL, direction: deposit, status: unverified}
+- {venue: wazirx, asset: USDT, direction: sell_for_fiat, fiat: INR, status: "yes", note: "Relaunched after the July 2024 hack; INR withdrawals reported to take 5-10 business days (Mudrex, Oct 2025). Used for premium history only, not as a route.", sources: [{url: "https://mudrex.com/learn/withdraw-from-wazirx-status", accessed: 2026-10-26}]}
+- {venue: luno_ng, asset: USDT, direction: sell_for_fiat, fiat: NGN, status: "yes", sources: [{url: "https://api.luno.com/api/exchange/1/markets", accessed: 2026-10-26}]}
+- {venue: luno_ng, asset: USDC, direction: sell_for_fiat, fiat: NGN, status: "yes", note: "Thin book: 1,320 bid vs 1,569 ask on 26 Oct", sources: [{url: "https://api.luno.com/api/exchange/1/markets", accessed: 2026-10-26}]}
+- {venue: luno_ng, asset: XRP, direction: sell_for_fiat, fiat: NGN, status: "yes", sources: [{url: "https://api.luno.com/api/exchange/1/markets", accessed: 2026-10-26}]}
+- {venue: luno_ng, asset: USDT, network: TRON, direction: deposit, status: unverified}
+- {venue: quidax, asset: USDT, direction: sell_for_fiat, fiat: NGN, status: "yes", sources: [{url: "https://app.quidax.io/api/v1/markets/usdtngn/depth", accessed: 2026-10-26}]}
+- {venue: quidax, asset: USDT, network: TRON, direction: deposit, status: unverified}
+- {venue: luno_ke, asset: USDT, direction: sell_for_fiat, fiat: KES, status: "yes", sources: [{url: "https://api.luno.com/api/exchange/1/markets", accessed: 2026-10-26}]}
+- {venue: luno_ke, asset: USDC, direction: sell_for_fiat, fiat: KES, status: "no", note: "USDCKES market listed but empty (bid 0, ask 0)"}
+- {venue: luno_ke, asset: XRP, direction: sell_for_fiat, fiat: KES, status: "no", note: "No XRPKES market; XRP would need an XRP->USDT swap first"}
+- {venue: coinsph, asset: USDT, direction: sell_for_fiat, fiat: PHP, status: "yes", sources: [{url: "https://api.pro.coins.ph/openapi/quote/v1/depth?symbol=USDTPHP", accessed: 2026-10-26}]}
+- {venue: coinsph, asset: USDC, direction: sell_for_fiat, fiat: PHP, status: "yes", sources: [{url: "https://api.pro.coins.ph/openapi/quote/v1/depth?symbol=USDCPHP", accessed: 2026-10-26}]}
+- {venue: coinsph, asset: XRP, direction: sell_for_fiat, fiat: PHP, status: "yes", sources: [{url: "https://api.pro.coins.ph/openapi/quote/v1/depth?symbol=XRPPHP", accessed: 2026-10-26}]}
+- {venue: coinsph, asset: USDT, network: TRON, direction: deposit, status: unverified}
+- {venue: bitso, asset: USDT, network: TRON, direction: deposit, status: "yes", note: "10 confirmations, free", sources: [{url: "https://bitso.com/fees/transactions", accessed: 2026-10-26}]}
+- {venue: bitso, asset: USDT, network: SOLANA, direction: deposit, status: "yes", note: "1 confirmation, free", sources: [{url: "https://bitso.com/fees/transactions", accessed: 2026-10-26}]}
+- {venue: bitso, asset: XRP, network: XRPL, direction: deposit, status: "yes", note: "1 confirmation, free", sources: [{url: "https://bitso.com/fees/transactions", accessed: 2026-10-26}]}
+- {venue: bitso, asset: USDC, network: SOLANA, direction: deposit, status: "no", note: "Not in Bitso's crypto deposit list"}
+- {venue: none_pk, asset: USDT, direction: sell_for_fiat, fiat: PKR, status: "no", note: "No regulated venue with a public PKR market; PVARA licensing in progress (Binance and HTX hold NOCs only); P2P markets not scraped"}

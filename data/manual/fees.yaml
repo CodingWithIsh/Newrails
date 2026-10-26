@@ -1,0 +1,402 @@
+# Published fees, collected by hand on 26 October 2026. Every entry has a source and a range.
+# `verified: false` means the provider's own page could not be read (bot check or sign-in wall)
+# and the range comes from secondary sources; those ranges are deliberately wide.
+# Spreads are NOT here: they are measured from live order books (data/cache/ramp_books.parquet).
+
+- provider: kraken
+  leg: deposit
+  asset: GBP
+  kind: fixed
+  low: 0.0
+  high: 0.0
+  unit: GBP
+  verified: false
+  sources:
+    - url: https://www.kraken.com/features/fee-schedule
+      accessed: 2026-10-26
+      note: "Fee schedule says funding fees depend on method; GBP Faster Payments assumed free (not stated on the page)."
+
+- provider: kraken
+  leg: trade
+  asset: XRP
+  kind: pct
+  low: 0.40
+  high: 0.80
+  unit: "%"
+  sources:
+    - url: https://www.kraken.com/features/fee-schedule
+      accessed: 2026-10-26
+      note: "Kraken Pro spot, tier 1 ($0+): maker 0.40%, taker 0.80%."
+
+- provider: kraken
+  leg: trade
+  asset: USDC
+  kind: pct
+  low: 0.20
+  high: 0.20
+  unit: "%"
+  sources:
+    - url: https://www.kraken.com/features/fee-schedule
+      accessed: 2026-10-26
+      note: "Stablecoin schedule applies where the stablecoin is the base currency: 0.20% maker and taker at $0+."
+
+- provider: kraken
+  leg: trade
+  asset: USDT
+  kind: pct
+  low: 0.20
+  high: 0.20
+  unit: "%"
+  sources:
+    - url: https://www.kraken.com/features/fee-schedule
+      accessed: 2026-10-26
+      note: "As USDC."
+
+- provider: kraken
+  leg: withdraw_crypto
+  asset: XRP
+  network: XRPL
+  kind: fixed
+  low: 0.05
+  high: 0.05
+  unit: XRP
+  sources:
+    - url: https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums
+      accessed: 2026-10-26
+      note: "Page updated 31 Dec 2025. Minimum withdrawal 12.05 XRP including the fee."
+
+- provider: kraken
+  leg: withdraw_crypto
+  asset: USDT
+  network: TRON
+  kind: fixed
+  low: 1.0
+  high: 1.0
+  unit: USDT
+  sources:
+    - url: https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums
+      accessed: 2026-10-26
+      note: "Tether USD (Tron): fee 1 USDT, minimum 6 USDT."
+
+- provider: kraken
+  leg: withdraw_crypto
+  asset: USDC
+  network: SOLANA
+  kind: fixed
+  low: 1.0323
+  high: 1.0323
+  unit: USDC
+  sources:
+    - url: https://support.kraken.com/articles/360000767986-cryptocurrency-withdrawal-fees-and-minimums
+      accessed: 2026-10-26
+      note: "USDC (Solana): fee 1.0323 USDC."
+
+- provider: coinbase
+  leg: trade
+  asset: USDC
+  kind: pct
+  low: 0.0
+  high: 0.60
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://help.coinbase.com/en-gb/coinbase/trading-and-funding/advanced-trade/advanced-trade-fees
+      accessed: 2026-10-26
+      note: "Coinbase Advanced rates are only visible when signed in; stablecoin pairs have a separate schedule. Range spans a zero-fee stable pair to a standard taker rate."
+
+- provider: coinbase
+  leg: trade
+  asset: USDT
+  kind: pct
+  low: 0.0
+  high: 0.60
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://help.coinbase.com/en-gb/coinbase/trading-and-funding/advanced-trade/advanced-trade-fees
+      accessed: 2026-10-26
+      note: "As USDC."
+
+- provider: coinbase
+  leg: withdraw_crypto
+  asset: USDT
+  network: TRON
+  kind: fixed
+  low: 0.5
+  high: 3.0
+  unit: USDT
+  verified: false
+  sources:
+    - url: https://help.coinbase.com/en-gb/coinbase/trading-and-funding/pricing-and-fees/fees
+      accessed: 2026-10-26
+      note: "0.01% USDT processing fee plus an estimated network fee shown at send time; the network part is a range, not a published figure."
+
+- provider: coinbase
+  leg: withdraw_crypto
+  asset: USDC
+  network: SOLANA
+  kind: fixed
+  low: 0.0
+  high: 1.0
+  unit: USDC
+  verified: false
+  sources:
+    - url: https://help.coinbase.com/en-gb/coinbase/trading-and-funding/pricing-and-fees/fees
+      accessed: 2026-10-26
+      note: "Network fee estimated at send time; not published as a number."
+
+- provider: revolut
+  leg: trade
+  asset: XRP
+  kind: pct
+  low: 1.49
+  high: 1.49
+  unit: "%"
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "Revolut Ltd retail crypto fees (created 7 Jul 2026). Standard plan from 10 Aug 2026: greater of 1.49% or a minimum fee (none above £200; £2.99 for £150-200)."
+
+- provider: revolut
+  leg: trade
+  asset: USDC
+  kind: pct
+  low: 0.0
+  high: 0.0
+  unit: "%"
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "No percentage or minimum fee on exchanges between fiat and stablecoins (within the Standard plan's fair-usage limit)."
+
+- provider: revolut
+  leg: trade
+  asset: USDT
+  kind: pct
+  low: 0.0
+  high: 0.0
+  unit: "%"
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "As USDC."
+
+- provider: revolut
+  leg: spread
+  asset: GBP
+  kind: pct
+  low: 0.0
+  high: 1.0
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "GBP->stablecoin uses Revolut's own exchange rate, which has no published margin; weekday rates are close to mid-market, weekend and over-limit exchanges carry a markup. Wide range on purpose."
+
+- provider: revolut
+  leg: withdraw_crypto
+  asset: XRP
+  network: XRPL
+  kind: fixed
+  low: 1.0
+  high: 1.05
+  unit: GBP
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "£1 service fee for XRP plus a variable network fee (XRPL network fee is fractions of a penny; 5p allowed)."
+
+- provider: revolut
+  leg: withdraw_crypto
+  asset: USDT
+  network: TRON
+  kind: fixed
+  low: 3.5
+  high: 6.0
+  unit: GBP
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "£3 service fee for 'all other cryptocurrencies' plus a passed-on network fee; Tron burn cost 0.5-3 GBP depending on energy (see chain_fee_sample)."
+
+- provider: revolut
+  leg: withdraw_crypto
+  asset: USDC
+  network: SOLANA
+  kind: fixed
+  low: 3.0
+  high: 3.05
+  unit: GBP
+  sources:
+    - url: https://cdn.revolut.com/terms_and_conditions/pdf/exchanging_cryptocurrency_personal_fees_ee1b196b_1.1.7_1783427938_en.pdf
+      accessed: 2026-10-26
+      note: "£3 service fee plus Solana network fee (fractions of a penny)."
+
+# ------------------------------------------------------------------ destination off-ramps
+
+- provider: coindcx
+  leg: trade
+  asset: INR
+  kind: pct
+  low: 0.50
+  high: 0.59
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://www.finowings.com/Crypto-Currency/coindcx-vs-coinswitch-vs-mudrex-vs-delta-exchange-crypto-exchanges-india-fees-features
+      accessed: 2026-10-26
+      note: "INR spot 0.50% below Rs 2 lakh 30-day volume; 18% GST on the fee gives 0.59%. coindcx.com/fees is behind a bot check."
+
+- provider: coindcx
+  leg: withdraw_fiat
+  asset: INR
+  kind: fixed
+  low: 0.0
+  high: 30.0
+  unit: INR
+  verified: false
+  sources:
+    - url: https://www.finowings.com/Crypto-Currency/coindcx-vs-coinswitch-vs-mudrex-vs-delta-exchange-crypto-exchanges-india-fees-features
+      accessed: 2026-10-26
+      note: "Only low-quality sources give a figure (Rs 25 + GST); range covers free to Rs 30."
+
+- provider: india_tax
+  leg: payout
+  asset: INR
+  kind: pct
+  low: 1.0
+  high: 1.0
+  unit: "%"
+  sources:
+    - url: https://koinx.com/in/tax-guides/impact-of-tds-on-crypto/
+      accessed: 2026-10-26
+      note: "Section 194S: 1% TDS on transfers of virtual digital assets, retained in Budget 2026-27. Creditable against tax, so it is a cash-flow cost, not necessarily a final one; modelled as a sensitivity."
+
+- provider: luno_ng
+  leg: trade
+  asset: NGN
+  kind: pct
+  low: 0.10
+  high: 1.00
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://www.luno.com.ng/legal/nigeria-zero-exchange-fee-promotion
+      accessed: 2026-10-26
+      note: "Official schedule (guide.luno.com.ng fees and limits) is behind a bot check; the 0% promotion ended 22 Jun 2026. Secondary sources give taker 0.10%-1.00%."
+
+- provider: luno_ng
+  leg: withdraw_fiat
+  asset: NGN
+  kind: fixed
+  low: 0.0
+  high: 500.0
+  unit: NGN
+  verified: false
+  sources:
+    - url: https://www.luno.com.ng/legal/nigeria-zero-exchange-fee-promotion
+      accessed: 2026-10-26
+      note: "No published figure could be read; wide range."
+
+- provider: quidax
+  leg: trade
+  asset: NGN
+  kind: pct
+  low: 0.10
+  high: 0.30
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://tradersunion.com/brokers/crypto/view/quidax/fees/
+      accessed: 2026-10-26
+      note: "Spot maker 0.1%, taker 0.15%-0.3% across secondary sources; instant buy/sell 1% (not used)."
+
+- provider: quidax
+  leg: withdraw_fiat
+  asset: NGN
+  kind: fixed
+  low: 100.0
+  high: 500.0
+  unit: NGN
+  verified: false
+  sources:
+    - url: https://tradersunion.com/brokers/crypto/view/quidax/fees/
+      accessed: 2026-10-26
+      note: "Commonly NGN 200; range 100-500 for a small withdrawal."
+
+- provider: luno_ke
+  leg: trade
+  asset: KES
+  kind: pct
+  low: 0.10
+  high: 1.00
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://techcabal.com/2025/06/23/luno-reopens-shop-in-kenya/
+      accessed: 2026-10-26
+      note: "Luno relaunched in Kenya (June 2025) with USDT/KES; no readable official fee page; same range as Nigeria."
+
+- provider: luno_ke
+  leg: withdraw_fiat
+  asset: KES
+  kind: fixed
+  low: 0.0
+  high: 100.0
+  unit: KES
+  verified: false
+  sources:
+    - url: https://techcabal.com/2025/06/23/luno-reopens-shop-in-kenya/
+      accessed: 2026-10-26
+      note: "Mobile-money withdrawals supported; fee not published in readable form."
+
+- provider: coinsph
+  leg: trade
+  asset: PHP
+  kind: pct
+  low: 0.25
+  high: 0.30
+  unit: "%"
+  verified: false
+  sources:
+    - url: https://investingengineer.com/coins-ph-review/
+      accessed: 2026-10-26
+      note: "Spot maker 0.25%, taker 0.30% for PHP 0-500,000 30-day volume (secondary)."
+
+- provider: coinsph
+  leg: withdraw_fiat
+  asset: PHP
+  kind: fixed
+  low: 0.0
+  high: 15.0
+  unit: PHP
+  verified: false
+  sources:
+    - url: https://investingengineer.com/coins-ph-review/
+      accessed: 2026-10-26
+      note: "InstaPay cash-out about PHP 10, PESONet free (secondary). Bank cash-ins were restricted by a BSP order in late Sep 2026; cash-outs operational."
+
+- provider: bitso
+  leg: trade
+  asset: MXN
+  kind: pct
+  low: 0.60
+  high: 0.78
+  unit: "%"
+  sources:
+    - url: https://bitso.com/fees
+      accessed: 2026-10-26
+      note: "Markets vs MXN, volume below MXN 20,000: maker 0.600%, taker 0.780% (also in the public API's available_books)."
+
+- provider: bitso
+  leg: withdraw_fiat
+  asset: MXN
+  kind: fixed
+  low: 0.0
+  high: 0.0
+  unit: MXN
+  sources:
+    - url: https://bitso.com/fees/transactions
+      accessed: 2026-10-26
+      note: "SPEI bank transfer withdrawal: free of charge."
