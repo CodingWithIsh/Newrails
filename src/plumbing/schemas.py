@@ -97,11 +97,12 @@ RAMP_BOOKS = FrameSchema(
     "ramp_books",
     {
         "ts": Col("datetime"), "venue": Col("str"), "symbol": Col("str"), "base": Col("str"), "quote": Col("str"),
-        "role": Col("str"), "best_bid": Col("float", min=0), "best_ask": Col("float", min=0),
-        "mid": Col("float", min=0), "spread_bps": Col("float", nullable=True), "crossed": Col("bool"),
+        "role": Col("str"), "best_bid": Col("float", nullable=True, min=0), "best_ask": Col("float", nullable=True, min=0),
+        "mid": Col("float", nullable=True, min=0), "spread_bps": Col("float", nullable=True), "crossed": Col("bool"),
         "bid_px": Col("object"), "bid_qty": Col("object"), "ask_px": Col("object"), "ask_qty": Col("object"),
     },
     key=("ts", "venue", "symbol"),
+    notes={"best_bid": "null when a venue returned an empty side (an outage); kept so gaps are counted, not hidden"},
 )
 
 WISE_QUOTES = FrameSchema(
