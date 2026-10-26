@@ -94,7 +94,7 @@ Stablecoins remove most of that risk. USDC and USDT were within 0.5% of a dollar
 - **Uncertainty:** costs are a Monte Carlo over snapshots and fee ranges, and risk uses block-bootstrap intervals. I wrote down six hypotheses before running anything. Five held. The one that failed: XRP's price risk exceeded its saving in only two corridors, and those savings existed only because of the local premium.
 - **Limits:** these prices assume accounts on two exchanges already exist, and ignore identity checks, availability and tax. Some local fees came only from secondary sources, so I used wide ranges, and the order books cover days, not seasons. The full list is in [LIMITATIONS.md](../LIMITATIONS.md).
 
-All the code and data are on GitHub: [github.com/CodingWithIsh](https://github.com/CodingWithIsh). This is analysis of public data, not financial advice, and not a recommendation to buy any token.
+All the code and data are on GitHub: [github.com/CodingWithIsh/New-rails-old-margins](https://github.com/CodingWithIsh/New-rails-old-margins). This is analysis of public data, not financial advice, and not a recommendation to buy any token.
 
 ## What's next
 
