@@ -392,7 +392,6 @@ def build_cache(client: Client | None = None, cache: Path = CACHE, raw: Path = R
     client = client or Client()
     cache.mkdir(parents=True, exist_ok=True)
     start, end = PRICE_WINDOW
-    t0, t1 = datetime(start.year, start.month, start.day, tzinfo=UTC), datetime(end.year, end.month, end.day, tzinfo=UTC) + timedelta(days=1)
     out: dict[str, Path] = {}
 
     xrp = binance_minutes(client, "XRPUSDT", PRICE_WINDOW, raw)
